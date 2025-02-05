@@ -1,0 +1,13 @@
+---
+title: "another website"
+format: html
+embed-resources: true #embed all the resources to this html file
+---
+
+# Section 1
+
+helloo
+
+## Section 2
+
+hii
