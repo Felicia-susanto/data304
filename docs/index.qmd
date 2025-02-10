@@ -1,5 +1,5 @@
 ---
-title: "another website"
+title: "homework 5"
 format: html
 embed-resources: true #embed all the resources to this html file
 editor: 
@@ -81,6 +81,34 @@ vl_chart(width = 800, height = 400) |>
   vl_add_data(seattle_weather) |>
   vl_add_properties(title = "High Temperature in Seattle Each Day")
 ```
+```{r}
+weather_data <- weather_data %>%
+  mutate(day_of_year = yday(date), year = factor(year(date)))
+
+vl_chart(width = 800, height = 400) |>
+  vl_mark_line() |>
+  vl_encode_x("day_of_year:O", title = "Day of the Year") |>
+  vl_encode_y("temp_max:Q", title = "High Temperature") |>
+  vl_encode_color("year:N", title = "Year") |>
+  vl_add_data(weather_data) |>
+  vl_add_properties(title = "High Temperature in Seattle Each Day over Years")
+```
+```{r}
+#trying to fix the x-axis...
+weather_data <- weather_data %>%
+  mutate(year = year(date))
+
+# Create the plot with a proper x-axis and color-coded lines for each year
+vl_chart(width = 800, height = 400) |>
+  vl_mark_line() |>
+  vl_encode_x("date:T", title = "Date") |>
+  vl_encode_y("temp_max:Q", title = "High Temperature") |>
+  vl_encode_color("year:N", title = "Year") |>
+  vl_add_data(weather_data) |>
+  vl_add_properties(title = "High Temperature in Seattle Each Day (Separated by Year)")
+```
+
+
 
 
 ## Exercise 2
@@ -99,17 +127,16 @@ weather_plot_data <- weather_data |>
     month_num = month(date),
     day_of_month = day(date)
   ) |>
-  filter(day_of_month <= 31) |>  # Ensure the x-axis stops at 31
   group_by(day_of_month, month, month_num, year) |>
   summarise(avg_temp = mean(temp_max, na.rm = TRUE), .groups = "drop")
 
 # Create the faceted plot sorted by month order
-vl_chart(width = 1000, height = 400) |>
+vl_chart(width = 500, height = 200) |>
   vl_mark_point() |>
-  vl_encode_x("day_of_month:Q", title = "Day of the Month (1 to 31)") |>
-  vl_encode_y("avg_temp:Q", title = "Average Temperature (°F)") |>
+  vl_encode_x("day_of_month:Q", title = "Day of the Month") |>
+  vl_encode_y("avg_temp:Q", title = "Average Temperature") |>
   vl_encode_color("year:N", title = "Year") |>
   vl_facet_row("month:N", title = "Month", sort = list(field = "month_num", order = "ascending")) |>
   vl_add_data(weather_plot_data) |>
-  vl_add_properties(title = "Temperature in Seattle (Faceted by Month)")
+  vl_add_properties(title = "Temperature in Seattle per Month")
 ```
