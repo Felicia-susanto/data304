@@ -1,0 +1,196 @@
+---
+title: "Tufte and Composition"
+format: html
+embed-resources: true #embed all the resources to this html file
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+## Exercise 1
+
+What is the most interesting lesson, guide, or piece of advice Tufte offers you in this chapter?
+Tufte mentions that time-series plots can be moved toward causal explanation by adding additional variables into the graphic design. These variables should help explain the relationship between the variables.
+
+Tufte shares some of his favorite graphics in this chapter. Pick one (but not the one about the military advance on and retreat from Russia) and answer the following.
+What page is your graphic on? [Take a screen shot and include the image as well, if you can.]
+
+This graph is on page 43
+![Man and Insect Graph](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMmj39oWGeMOQ9B1G3k38Qp6WZaHVpERgxUA&s)
+
+Why did you pick the graphic you chose?
+I chose this graphic because it was very eye catching and interesting. It looks like a picture that I would see in a biology textbook, but it is actually a graph that conveys a lot of information. It shows the life cycle of the Japanese beetle over time while also showing the readers visually how the beetle looks like in every developmental stage (which I think starts in July).
+
+What encoding channels are used in the graphic? What variables are they associated with?
+
+Positions:
+
+- months of the year is mapped to the x axis
+
+- location relative to the ground is mapped to the y axis
+
+size: 
+
+- The size of the egg, larvae, and beetle represents their relative size at that stage
+
+
+What, if any, elements of the graphic would be hard/impossible for you to implement in Vega-Lite (given what we know so far)?
+The image of the trees, beetle, and land and tunnel seems impossible for me to implement in vega-lite, the shadings also seem impossible though I am not sure if the different shades of grey mean anything.
+
+If I had to implement this in vegalite, I think the best I could do is to make each beetle a point and make it seem like a scatterplot, but then the graph wouldn't hold as much information since every data point will be just a dot. On the other hand, this graph shows us the stages the beetle is in with every data point.
+
+What point is Tufte illustrating with this graphic?
+
+Tufte mentions that this example ingeniously mixes space and time on the horizontal axis and it is not using the conventional time-series because of its plotting field that uses location relative to the ground surface on the vertical axis and time/space on the horizontal. I think Tufte is also letting us know that the data-to-ink ratio is not something that is always the best option. In my opinion, this graph uses a lot of ink, most of the ground is grey and there are grasses and leaves and beetles, but that is what makes this graph interesting, unique, and very informational.
+
+## Exercise 2
+List one or two ideas that you learned in these sections that will change the way you design and create data graphics.
+
+- bar charts must have a zero baseline, if not, it ruins the comparisons readers are trying to make because it distorts the relative position of the top of the bars with the y axis. For other plots such as scatterplots or line graphs, zooming in and changing the axis is fine, but the graph still has to make it clear that the axis doesn't start at 0.
+
+- important note: our graph would make sense to us because we have been staring at the data for a long time and we have a lot of time to wrangle and understand the data. However, this is not true for the readers who probably only want to spend a few minutes looking at a graph. I will try my best to always use these questions as a guide in making my graphs:
+1. What am I trying to show?
+2. How important is it?
+3. Who is my audience?
+4. Is my audience familiar with this type of graph?
+5. How am I presenting the information?
+
+In addition to these questions, feedback from friends and other people are very valuable since they present a fresh point of view.
+
+## Exercise 3
+
+### 1
+List three things that are not ideal about this graph. What makes it challenging?
+
+The graph is not straightforward, it has 2 scales on the y-axis, one on the left and one on the right. I have to go back and forth between matching the line to the y-axis on the right and the bar graph to the y-axis on the left. In addition, the graph already has detailed percentages written on top of each bar and on top of each line point, so the y-axis(es) aren't really helping much in my opinion. 
+
+If I only glanced at the graph, I wouldn't have realized that the x-axis for the completion rate starts at 50% instead of 0%. I read above that bar charts aren't supposed to be zoomed in like this because it makes the difference between each bin much more extreme than it actually is. If the author really wanted the graph to be zoomed in, he/she should make it really clear beforehand that the graph is zoomed in. The difference between each quarter shouldn't be that big if the x-axis starts at 0.
+
+The graph's right y-axis scale is not the same as the horizontal line that goes across the graph, which makes it a bit weird to look at but the horizontal lines do correspond to the y-axis on the left side of the graph so I guess that is what it was meant for.
+
+The graph is good for comparing each data point from 4 quarters in each year and how that progresses throughout the year, I think I like how the x-axis is made. The detailed number of percentages on each data point is also really good since the scales are off for both y-axises (one doesn't start at 0 and the other one doesn't correspond to the horizontal lines) but it can make the graph look crowded.
+
+
+### 2
+For each of the three things you’ve listed, describe how you would overcome the given challenge.
+
+2 different scales: I would just remove the right y-axis that shows the response rate. I would use the line graph and give detailed number on each datapoint instead (like what is already shown). For the bar graph, I would probably remove the percentages on top of each graph because the y-axis already does a good job in displaying the percentages. Or I could change the bar graph into a line graph so there would be 2 line graphs with the percentages explicitly written on each point.
+
+If I were to use a bar chart, I would also change the y axis for the completion rate to start from 0 instead of 50%
+
+Once again, I would just remove the y axis for the response rate since it's more confusing and it makes the graph looks busier without adding important piece of information.
+
+### 3
+Download the data. Create your visual that puts into practice the strategies you’ve outlined.
+
+(I couldn't figure out how to input the texts that explicitly states the percentages for each point, but i added tooltip so that when we hover on the point we can see the percentage.)
+
+```{r}
+library(magick)
+file_path <- file.path("~/senior spring/data 304/data304 github/data304/docs", "vegalite hw 6 graph.png")
+expanded_path <- path.expand(file_path)
+  screenshot <- image_read(expanded_path)
+  plot(screenshot)
+```
+
+
+```
+library(magick)
+screenshot <- image_read(~/senior spring/data 304/data304 github/data304/docs)
+plot(screenshot)
+```
+
+
+
+#### Vega Lite code:
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "values": [
+      {"Date": "Q1-2017", "Completion Rate": 0.91, "Response Rate": 0.023},
+      {"Date": "Q2-2017", "Completion Rate": 0.93, "Response Rate": 0.018},
+      {"Date": "Q3-2017", "Completion Rate": 0.91, "Response Rate": 0.028},
+      {"Date": "Q4-2017", "Completion Rate": 0.89, "Response Rate": 0.023},
+      {"Date": "Q1-2018", "Completion Rate": 0.84, "Response Rate": 0.034},
+      {"Date": "Q2-2018", "Completion Rate": 0.88, "Response Rate": 0.027},
+      {"Date": "Q3-2018", "Completion Rate": 0.91, "Response Rate": 0.026},
+      {"Date": "Q4-2018", "Completion Rate": 0.87, "Response Rate": 0.039},
+      {"Date": "Q1-2019", "Completion Rate": 0.83, "Response Rate": 0.028}
+    ]
+  },
+  "width": 500,
+  "height": 300,
+  "encoding": {
+    "x": {
+      "field": "Date",
+      "type": "ordinal",
+      "sort": [
+        "Q1-2017", "Q2-2017", "Q3-2017", "Q4-2017",
+        "Q1-2018", "Q2-2018", "Q3-2018", "Q4-2018",
+        "Q1-2019"
+      ],
+      "title": "Date"
+    }
+  },
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "y": {
+          "field": "Completion Rate",
+          "type": "quantitative",
+          "title": "Completion & Response Rate"
+        }
+      }
+    },
+    {
+      "mark": "point",
+      "encoding": {
+        "y": {
+          "field": "Completion Rate",
+          "type": "quantitative"
+        },
+          "tooltip": [
+            {"field": "Completion Rate", "type": "quantitative", "format": ".1%"}
+          ]
+      }
+    },
+    {
+      "mark": "line",
+      "encoding": {
+        "y": {
+          "field": "Response Rate",
+          "type": "quantitative"
+        },
+      "color": {"value": "orange"}
+      }
+    },
+    {
+      "mark": "point",
+      "encoding": {
+        "y": {
+          "field": "Response Rate",
+          "type": "quantitative"
+        },
+      "color": {"value": "orange"},
+        "tooltip": [
+          {"field": "Response Rate", "type": "quantitative", "format": ".1%"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "axisY": {
+      "domain": false,
+      "ticks": false,
+      "labels": false 
+    }
+  }
+}
+
+
+
+
+
+
+
