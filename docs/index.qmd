@@ -6,5 +6,6 @@ editor:
   markdown: 
     wrap: sentence
 ---
-[HW5](homework5.html)
-[HW6](tufte.html)
+
+* [HW5](homework5.html)
+* [HW6](tufte.html)
