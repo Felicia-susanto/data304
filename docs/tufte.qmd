@@ -103,6 +103,15 @@ plot(screenshot)
 
 
 #### Vega Lite code:
+
+```{r}
+library(vegawidget)
+```
+
+
+```{r}
+#| code-fold: true
+'
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {
@@ -187,6 +196,8 @@ plot(screenshot)
     }
   }
 }
+' |> as_vegaspec()
+```
 
 
 
