@@ -1,0 +1,262 @@
+---
+title: "hw7-bar charts"
+author: "Felicia Susanto"
+format: html
+editor: visual
+---
+
+# HW 7
+
+## Exercise 1
+
+```{r libraries}
+#| message: false
+library(altair)
+library(vegawidget)
+library(readr)
+library(dplyr)
+library(vegalite)
+library(lubridate)
+library(vegabrite)
+```
+
+### a
+List some guidelines/advice Wilke gives about creating bar charts.
+
+-if the labels are too long, don't make them vertical in the y-axis. We can flip the bar-graph so that the bars are horizontal and the labels are on the y-axis
+
+-be mindful of how we arrange the bars, it should be in meaningful order and intuitive
+
+-only rearrange the bars when there is no natural ordering to the categories, if there is an order, we should retain that ordering (ex: age)
+
+-stacking is appropriate when individual bars represent counts.
+
+
+### b
+When is it not advised to use a bar chart? Why?
+
+-when the axes doesn't start at 0
+
+-when the length of the bars take away from the point of the story/ is meaningless
+
+
+### c
+What alternatives to bars are mentioned in this chapter?
+
+-dot plots and heatmaps 
+
+
+### d
+What guidance does Wilke give about whether or not to stack bars vs. dodge them (using an offset in Vega-Lite)?
+
+-When grouping the bars, they have to be in a meaningful group
+
+-Stacking bars are good when the sum of the amounts represented by the individual stacked bars represents a meaningful amount.
+
+
+### e
+Recreate Figure 6.3 in Vega-Lite
+
+```{r data figure 6.3}
+#| message: false
+bar_data <- read_csv("https://calvin-data304.netlify.app/data/cow-movies.csv")
+
+# Q1: vl_transform_calculate(million_amount = "datum.amount / 1000000") didn't work in the code chunk below so I use mutate instead.
+bar_data <- bar_data |>
+  mutate(amount_million = amount/1000000)
+
+#head(bar_data)
+```
+
+```{r recreating graph}
+vl_chart(bar_data, width = 400, height = 200) |>
+  vl_mark_bar() |>
+  vl_encode_x("amount_million:Q", title = "weekend gross (Million USD)") |>
+  vl_encode_y("title:N", sort = list(field = "amount", order = "descending"))
+  
+```
+  
+
+### f
+Recreate Figures 6.8 and 6.9 in Vega-Lite
+
+```{r data figure 6.8 & 6.9}
+#| message: false
+bar_data2 <- read_csv("https://calvin-data304.netlify.app/data/cow-income.csv")
+# head(bar_data2)
+```
+
+```{r recreating 6.8 & 6.9}
+# Q2:(change color pallete?)
+
+vl_chart(bar_data2, width = 400)|>
+  vl_mark_bar() |>
+  vl_encode_x("race:N") |>
+  vl_encode_xOffset("age:N") |>
+  vl_encode_y("median_income:Q", title = "median income (USD)")|>
+  vl_filter("datum.race =='asian' | datum.race =='white'| datum.race == 'hispanic' | datum.race == 'black'")|>
+  vl_encode_color("age:N", title = "age (yrs)")
+```
+
+
+```{r}
+# Q3: How do I make it 2 columns?
+
+vl_chart(bar_data2, width = 300)|>
+  vl_mark_bar() |>
+  vl_encode_x("age:N") |>
+  vl_filter("datum.race =='asian' | datum.race =='white'| datum.race == 'hispanic' | datum.race == 'black'")|>
+  vl_encode_y("median_income:Q", title = "median income (USD)")|>
+  vl_encode_column("race:N", columns = 2)
+
+```
+
+### g
+
+```{r data figure 6.11}
+#| message: false
+data3 <- read_csv("https://calvin-data304.netlify.app/data/cow-gapminder.csv")
+```
+
+```{r recreating 6.11}
+vl_chart(data3)|>
+  vl_mark_point(filled = TRUE) |>
+  vl_filter("datum.lifeExp >= 60 && datum.lifeExp <= 81 && datum.year == 2007 && datum.continent == 'Americas'") |>
+  vl_encode_x("lifeExp:Q", title = "life expectancy (years)",scale = list(domain = c(60, 81))) |>
+  vl_encode_y("country:N", sort = list(field = "lifeExp", order = "descending"))
+```
+
+Figure 6.12 is bad because it plotting the graph with bars. The bars become too long and they draw people's attention away from the key point/story of the graph which is the differences in life expectancy among the different countries in the Americas. The difference becomes so small in proportion to long bars whereas points do a better job at displaying the different life expectancies as our brain doesn't have the length of the bars as comparison but just dots on the graph.
+
+Figure 6.13 is bad because although it is a dot plot, the dot plot is not ordered with a purpose. This makes the plot cloudy and confusing to read and does not convey any message at all. This plot doesn't have a pattern so our brain can't really make up a story, it is just like looking at randomly placed dots on a graph.
+
+## Exercise 2
+
+### a
+
+Watch [this video](https://youtu.be/r6-3_bdcofg?si=5tw1QBT5ke_A5ak2&t=1398)
+
+### b
+
+List at least three pieces of advice you can glean from this video that might help you design good graphics.
+
+- bad data, bad taste, bad aesthetics, and bad perception makes a graph hard to interpret. 
+
+- minimize chart junk, don't fill the graph with unimportant information and visualizations. 
+
+- be aware of how human perception works. ex: contrasts are easier seen when close together/bands are touching or when two checkered boxes have the same color, but they look different because our brain expects them to be different.
+
+- Healy said to put categorical variables in the y axis instead of the x axis because reading things from left to right is easier than reading things like a table.
+
+- we can zoom into the x-axis if it makes sense. ex: life expectancy will not start at 0, so it's fine to make the graph's x-axis zoomed in.
+
+### c
+
+There are two figures in this video that come from Chapter 1 of Tufte (2001). Did you spot them? Which figures are they?
+
+it is the temperature graph by E.J.Marey called La methode graphique and the graph from Charles Joseph Minard, Tableux Graphiques et Cartes Figuratives de M.Minard.
+
+
+## Exercise 3
+
+### a
+
+In Vega-Lite lingo, what makes something be a heat map?
+
+a graphical representation of data that uses a system of color coding to represent different values.
+
+```
+"mark": "rect",
+"encoding":{
+"color": {"aggregate": "mean", "field": "value"}
+}
+```
+
+
+### b
+```{r data figure 6.14}
+#| message: false
+data4 <- read_csv("https://calvin-data304.netlify.app/data/cow-internet2.csv")
+
+data4_sorted <- data4 |>
+  left_join(data4 |> filter(year == 2016) |> select(country, users_2016 = users), 
+            by = "country")
+```
+
+```{r recreating 6.14}
+vl_chart(data4_sorted) |>
+  vl_mark_rect() |>
+  vl_filter("datum.year >= 1994") |>
+  vl_encode_x("year:N") |>
+  vl_encode_y("country:N", sort = list(field = "users_2016", order = "descending")) |>
+  vl_encode_color("users:Q", legend = list(title = "Internet Users / 100 people"), scale = list(scheme= "inferno"))
+```
+
+
+### c
+
+At around 20:10, Healy presents a possible problem with heat maps, what is it?
+
+It is hard to see through the graph which squares have the same shade. This is because of the relative colors of the borders where light and dark squares next to each other makes it hard for our eyes to objectively judge the color of each box.
+
+### d
+
+But starting at around 44:12, he presents a heat map as a “show pony”. Why isn’t the problem presented earlier an issue here? Is it an issue in the figure you make in part b? Why or why not?
+
+The problem of not being to compare similar colors easily is not an issue here is because each color is very different so each pixel is very different to one another and the heatmap shown shows clear distinction for each time frame and it's mortality rate.
+
+I don't think it's an issue for figure b because the graph is mostly ordered, but I can see why it might be hard to compare some colors over different countries.
+
+
+## Exercise 4
+
+### a
+
+Pie charts make it hard to compare each value against each other. We are much better at decoding lengths and height against angles and area. Using the same data, the bar chart makes the difference so much more prominent than the pie chart.
+
+### b
+
+Wilke says that he does not think any one visualization is consistenty superior over any other. Choosing a visualization depends on the features of each dataset and the story the writer wants to tell. 
+
+### c
+
+Wilke proposed a rectangle instead of a circle. A stacked bar chart instead of a pie chart. Or we could also take the bars from the stacked bar chart and place them side-by-side and make it a bar plot.
+
+Stacked bars work for side-by-side comparisons of multiple conditions or in a time series and it clearly visualizes the data as proportions of a whole.
+
+A side-by-side bar plot makes the relationship of each bar to the total not visually obvious but it is preffered when we want to directly compare the individual fractions to each other.
+
+Pie charts work well when the goal is to emphasize simple fractions, such as 1/2, 1/3, or 1/4. They also work well in small datasets.
+
+
+### d
+
+```{r pie data}
+data_pie <- data.frame(
+  party = c("CDU/CSU", "SPD", "FDP"),
+  seats = c(243, 214, 39)
+)
+```
+
+
+```{r pie chart}
+pie_layer <- vl_chart(data_pie) |>
+  vl_mark_arc(outerRadius = 80) |>
+  vl_encode_color('party:N')
+
+text_layer <- vl_chart(data_pie) |>
+  vl_mark_text(radius = 105) |>
+  vl_encode_text('party:N')
+
+seat_layer <- vl_chart(data_pie) |>
+  vl_mark_text(radius = 40) |>
+  vl_encode_text('seats:Q')
+ 
+vl_layer(pie_layer, text_layer, seat_layer) |>
+  vl_add_data(data_pie) |>
+  vl_encode_theta( aggregate = 'count', stack = TRUE)
+
+```
+
+
+

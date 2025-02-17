@@ -1,11 +1,13 @@
 ---
-title: "portofolio"
+title: "Felicia's Data-304 Portofolio"
 format: html
-embed-resources: true #embed all the resources to this html file
+embed-resources: true 
 editor: 
   markdown: 
     wrap: sentence
 ---
 
-* [HW5](homework5.html)
-* [HW6](tufte.html)
+# Homeworks
+* [HW5: Mapping Graphs](homework5.html)
+* [HW6: Visualizations](tufte.html)
+* [HW7: Bar Plots](barcharts.html)
