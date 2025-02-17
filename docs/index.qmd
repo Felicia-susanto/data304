@@ -8,6 +8,7 @@ editor:
 ---
 
 # Homeworks
+
 * [HW5: Mapping Graphs](homework5.html)
 * [HW6: Visualizations](tufte.html)
 * [HW7: Bar Plots](barcharts.html)
