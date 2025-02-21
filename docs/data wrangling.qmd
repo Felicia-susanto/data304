@@ -1,0 +1,218 @@
+---
+title: "Data Wrangling for Graphics"
+author: "Felicia Susanto"
+format: html
+embed-resources: true #embed all the resources to this html file
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r libraries}
+#| message: false
+library(vegawidget)
+library(readr)
+library(dplyr)
+library(vegalite)
+library(lubridate)
+library(vegabrite)
+library(tidyr)
+library(jsonlite)
+```
+
+
+# Exercise 1 (supply and demand)
+
+```{r read data 1}
+#| message: false
+supply_demand <- read_csv("https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.csv")
+
+supply_demand |>
+  pivot_longer(demand:capacity, names_to = "type", values_to = "number")
+
+supply_demand2 <- supply_demand |>
+  mutate(unmet_demand = demand - capacity)
+ # pivot_longer(capacity:unmet_demand, names_to = "type", values_to = "number")
+  
+
+```
+
+```{r grouped bar chart}
+vl_chart(supply_demand) |>
+  vl_fold(
+    c("capacity", "demand"),
+    as = c("type", "value")) |>
+  vl_mark_bar() |>
+  vl_encode_x("date:O") |>
+  vl_encode_xOffset("type:N") |>
+  # vl_facet_column("type:N") |>
+  vl_encode_y("value:Q") |>
+  vl_encode_color("type:N", scale = list(domain = c("demand", "capacity")))
+```
+
+
+```{r line graph}
+vl_chart(supply_demand) |>
+  vl_fold(
+    c("capacity", "demand"),
+    as = c("type", "value")) |>
+  vl_mark_line(point = TRUE) |>
+  vl_encode_x("date:T") |>
+  vl_encode_xOffset("type:N") |>
+  vl_encode_y("value:Q") |>
+  vl_encode_color("type:N", scale = list(domain = c("demand", "capacity")))
+```
+
+```{r stacked bar}
+demandplot <- vl_chart(supply_demand) |>
+  vl_mark_bar() |>
+  vl_encode_x("date:T") |>
+  vl_encode_y("demand:Q") |>
+  vl_encode_color(value = "red")
+
+capacityplot <- vl_chart(supply_demand) |>
+  vl_mark_bar(width = 10) |>
+  vl_encode_x("date:T") |>
+  vl_encode_y("capacity:Q") |>
+  vl_encode_color(value = "blue") |>
+  vl_encode_opacity(value = 0.7)
+
+vl_layer(demandplot, capacityplot)
+```
+
+```{r stacked unmet demand}
+demandplot <- vl_chart(supply_demand) |>
+  vl_mark_bar() |>
+  vl_encode_x("date:T") |>
+  vl_encode_y("demand:Q") |>
+  vl_encode_color(value = "red", title = "unmet demands")
+
+capacityplot <- vl_chart(supply_demand) |>
+  vl_mark_bar() |>
+  vl_encode_x("date:T") |>
+  vl_encode_y("capacity:Q") |>
+  vl_encode_color(value = "blue", title = "capacity") |>
+  vl_encode_opacity(value = 0.7)
+
+vl_layer(demandplot, capacityplot)
+```
+
+
+```{r points combined}
+demandplot <- vl_chart(supply_demand) |>
+  vl_mark_point() |>
+  vl_encode_x("date:T") |>
+  vl_encode_y("demand:Q") |>
+  vl_encode_color(value = "red")
+
+capacityplot <- vl_chart(supply_demand) |>
+  vl_mark_point() |>
+  vl_encode_x("date:T") |>
+  vl_encode_y("capacity:Q") |>
+  vl_encode_color(value = "blue")
+
+lineplot <- vl_chart(supply_demand) |>
+  vl_fold(
+  c("capacity", "demand"),
+  as = c("type", "value")) |>
+  vl_mark_line() |>
+  vl_encode_x("date:T") |>
+  vl_encode_y("value:Q") |>
+  vl_encode_detail("date:T")
+
+vl_layer(demandplot, capacityplot, lineplot)
+```
+
+```{r unmet line}
+vl_chart(supply_demand2) |>
+  vl_mark_line(point = TRUE) |>
+  vl_encode_x("date:T") |>
+  vl_encode_y("unmet_demand:Q")
+```
+
+
+# Excercise 2 (jobs)
+
+```{r class code}
+
+jobs_url <- 
+  "https://cdn.jsdelivr.net/npm/vega-datasets@2.8.0/data/jobs.json"
+
+
+#| fig-cap: "This is a caption for the figure."
+vl_chart() |>
+  vl_mark_point() |>
+  vl_pivot("year", groupby = list("job", "sex"), value = "perc") |>
+  vl_encode_x("1850:Q") |>
+  vl_scale_x(type = "symlog", constant = 0.00001) |>  # note: scale must be set quite small
+  vl_encode_y("2000:Q") |>
+  vl_scale_y(type = "symlog", constant = 0.00001) |>  # note: scale must be set quite small
+  vl_facet_column("sex:N", title = "") |>
+  vl_encode_tooltip_array(list("job", "sex", "1850", "2000")) |>
+  vl_add_properties(
+    title =  list( 
+      text = "Percent of people working various jobs",
+      subtitle = "Each dot represents the one occupation. Hover to see which occupation it is."
+      )) |>
+  vl_add_data_url(jobs_url) 
+```
+
+### "perc" means?
+sum all values of perc in each year separated by men and women... explain what perc means
+
+```{r read json url}
+jobs_data <- fromJSON("https://cdn.jsdelivr.net/npm/vega-datasets@2.8.0/data/jobs.json")
+```
+
+```{r adding up perc}
+jobs_summary <- jobs_data %>%
+  group_by(year, sex) %>%
+  summarise(total_perc = sum(perc, na.rm = TRUE))
+
+glimpse(jobs_summary)
+```
+
+Looking at the data, the "perc" values add up to one for each year. This means that if we sum the percentages of men and women for the same year, the total will always be one. In other words, "perc" represents the proportion of jobs each year (where the total is 1, not 100%) for both men and women. For example, in 1850, 0.990373464 (or 99%) of workers were men, while 0.009626536 (or 1%) were women. This makes sense, as most women were likely housewives at that time.
+
+### modifying graphic
+
+```{r modifying jobs graphic}
+vl_chart(jobs_data) |>
+  vl_mark_point() |>
+  vl_pivot("year", groupby = list("job", "sex"), value = "perc") |>
+  vl_facet_column() |>
+  vl_encode_x("1850:Q") |>
+  vl_scale_x(type = "symlog", constant = 0.00001) |>  # note: scale must be set quite small
+  vl_encode_y("2000:Q") |>
+  vl_scale_y(type = "symlog", constant = 0.00001) |>  # note: scale must be set quite small
+  vl_facet_column("sex:N", title = "") |>
+  vl_encode_tooltip_array(list("job", "sex", "1850", "2000")) |>
+  vl_add_properties(
+    title =  list( 
+      text = "Percent of people working various jobs",
+      subtitle = "Each dot represents the one occupation. Hover to see which occupation it is."
+      ))
+```
+
+
+
+
+
+# Exercise 3 (price at the pump)
+
+```{r read data 3}
+#| message: false
+gas_prices <- read_csv("https://calvin-data304.netlify.app/data/pump_price_for_gasoline_us_per_liter.csv")
+
+countries <- read_csv("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv")
+```
+
+
+
+
+
+
+
+
+
+
