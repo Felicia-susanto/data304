@@ -178,30 +178,25 @@ Looking at the data, the "perc" values add up to one for each year. This means t
 
 ```{r}
 jobs_data_transformed <- jobs_data |>
-  pivot_wider(names_from = sex, values_from = c(count, perc)) |>
-  pivot_longer(cols = starts_with("count_"):starts_with("perc_"), 
-               names_to = c("details", "sex"), 
-               names_sep = "_", 
-               values_to = "value") |>
-  pivot_wider(names_from = sex, values_from = value)
+  pivot_wider(names_from = sex, values_from = perc, id_cols = c(job, year))
 
 # View result
-print(jobs_data_transformed)
+head(jobs_data_transformed)
 ```
 
-
-```
-vl_chart(jobs_data) |>
+```{r}
+vl_chart(jobs_data_transformed) |>
   vl_mark_point() |>
-  vl_pivot("year", groupby = list("job", "sex"), value = "perc") |>
-  vl_filter("datum.year == 2000 | datum.year == 2010 | datum.year == 1990 | datum.race == 1980")
-  vl_facet_column("year:O", title = "") |>
-  vl_encode_x("perc_men:Q") |>
+  vl_filter("datum.year == 2000 | datum.year == 1990 | datum.year == 1980 | datum.year == 1970") |>
+  vl_facet("year:O", title = "", columns = 2) |>
+  vl_encode_x("men:Q") |>
   vl_scale_x(type = "symlog", constant = 0.00001) |>  # note: scale must be set quite small
-  vl_encode_y("per_women:Q") |>
+  vl_encode_y("women:Q") |>
   vl_scale_y(type = "symlog", constant = 0.00001) |>  # note: scale must be set quite small
   vl_encode_color("job:N") |>
-#  vl_encode_tooltip_array(list("job", "sex", "1850", "2000")) |>
+  vl_encode_tooltip_array(list("job", "men", "women")) |>
+  vl_axis_x(format=".0%") |>
+  vl_axis_y(format=".0%") |>
   vl_add_properties(
     title =  list( 
       text = "Percent of people working various jobs",
@@ -209,6 +204,58 @@ vl_chart(jobs_data) |>
       ))
 ```
 
+## percentage of men and women who worked in various jobs
+
+```{r}
+#join data because jobs_summary contain total % for men and women in each year
+
+jobs_summary <-
+  jobs_summary |>
+  pivot_wider(names_from = sex, values_from = total_perc, id_cols = year) |>
+  rename_with(~ paste0(.x, "_total_perc"), -year)
+
+```
+
+```{r}
+jobs_data_transformed_join <- left_join(jobs_data_transformed, jobs_summary, by = "year") |>
+  mutate(
+    perc_men = men / men_total_perc,
+    perc_women = women / women_total_perc
+  )
+```
+
+```{r}
+vl_chart(jobs_data_transformed_join) |>
+  vl_mark_point() |>
+  vl_filter("datum.year == 2000 | datum.year == 1990 | datum.year == 1980 | datum.year == 1970") |>
+  vl_facet("year:O", title = "", columns = 2) |>
+  vl_encode_x("perc_men:Q") |>
+  vl_scale_x(type = "symlog", constant = 0.00001) |>  # note: scale must be set quite small
+  vl_encode_y("perc_women:Q") |>
+  vl_scale_y(type = "symlog", constant = 0.00001) |>  # note: scale must be set quite small
+  vl_encode_color("job:N") |>
+  vl_encode_tooltip_array(list("job", "perc_men", "perc_women")) |>
+  vl_axis_x(format=".0%") |>
+  vl_axis_y(format=".0%") |>
+  vl_add_properties(
+    title =  list( 
+      text = "Percent of people working various jobs in proportion to their gender",
+      subtitle = "Each dot represents the one occupation. Hover to see which occupation it is."
+      ))
+```
+
+#left join vegabrite
+```
+jobs_data_transformed |>
+vl_lookup(
+  lookup = "year",
+  from = list(
+    data = list(jobs_data_transformed),
+    key = "year",
+    fields = list("total_perc")
+  )
+)
+```
 
 
 # Exercise 3 (price at the pump)
@@ -244,6 +291,19 @@ print(unmatched_country_countries$country)
 
 ```
 
+```{r}
+#cleaned_data_countries <- joined_countries |> drop_na()
+
+vl_chart(joined_countries)|>
+  vl_mark_bar() |>
+  vl_fold(
+    c("1998", "2000", "2002", "2004", "2006", "2008", "2010", "2012"),
+    as = c("year", "gas_price")) |>
+  vl_encode_x("year:T") |>
+  vl_encode_y("median_income:Q", title = "median income (USD)")|>
+  vl_encode_column("sub-region:N", columns = 2)
+
+```
 
 
 
