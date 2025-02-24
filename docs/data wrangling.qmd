@@ -176,25 +176,38 @@ Looking at the data, the "perc" values add up to one for each year. This means t
 
 ### modifying graphic
 
-```{r modifying jobs graphic}
+```{r}
+jobs_data_transformed <- jobs_data |>
+  pivot_wider(names_from = sex, values_from = c(count, perc)) |>
+  pivot_longer(cols = starts_with("count_"):starts_with("perc_"), 
+               names_to = c("details", "sex"), 
+               names_sep = "_", 
+               values_to = "value") |>
+  pivot_wider(names_from = sex, values_from = value)
+
+# View result
+print(jobs_data_transformed)
+```
+
+
+```
 vl_chart(jobs_data) |>
   vl_mark_point() |>
   vl_pivot("year", groupby = list("job", "sex"), value = "perc") |>
-  vl_facet_column() |>
-  vl_encode_x("1850:Q") |>
+  vl_filter("datum.year == 2000 | datum.year == 2010 | datum.year == 1990 | datum.race == 1980")
+  vl_facet_column("year:O", title = "") |>
+  vl_encode_x("perc_men:Q") |>
   vl_scale_x(type = "symlog", constant = 0.00001) |>  # note: scale must be set quite small
-  vl_encode_y("2000:Q") |>
+  vl_encode_y("per_women:Q") |>
   vl_scale_y(type = "symlog", constant = 0.00001) |>  # note: scale must be set quite small
-  vl_facet_column("sex:N", title = "") |>
-  vl_encode_tooltip_array(list("job", "sex", "1850", "2000")) |>
+  vl_encode_color("job:N") |>
+#  vl_encode_tooltip_array(list("job", "sex", "1850", "2000")) |>
   vl_add_properties(
     title =  list( 
       text = "Percent of people working various jobs",
       subtitle = "Each dot represents the one occupation. Hover to see which occupation it is."
       ))
 ```
-
-
 
 
 
@@ -207,6 +220,29 @@ gas_prices <- read_csv("https://calvin-data304.netlify.app/data/pump_price_for_g
 countries <- read_csv("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv")
 ```
 
+```{r joining data}
+
+#giving both datasets common names
+
+countries <- countries %>% rename(country = name)
+
+joined_countries <- gas_prices %>% inner_join(countries, by = "country")
+
+# Identify unmatched countries
+unmatched_country_gas <- gas_prices %>% anti_join(countries, by = "country")  # Countries in gas_prices but not in countries
+unmatched_country_countries <- countries %>% anti_join(gas_prices, by = "country")  # Countries in countries but not in gas_prices
+
+# View results
+print("Successfully Matched Data:")
+print(joined_countries)
+
+print("Countries in gas_prices but NOT in countries:")
+print(unmatched_country_gas$country)
+
+print("Countries in countries but NOT in gas_data:")
+print(unmatched_country_countries$country)
+
+```
 
 
 
