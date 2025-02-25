@@ -1,0 +1,112 @@
+---
+title: "Maps, Pies, and Other Graphics"
+author: "Felicia Susanto"
+format: html
+embed-resources: true #embed all the resources to this html file
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r libraries}
+#| message: false
+library(vegawidget)
+library(readr)
+library(dplyr)
+library(lubridate)
+library(vegabrite)
+library(tidyr)
+```
+
+# Exercise 1
+
+## a
+
+
+
+
+## b
+
+
+
+## c
+
+
+
+## d
+
+
+
+## e
+
+
+
+
+
+# Exercise 2
+
+## a
+
+
+## b 
+
+
+## c
+
+
+
+
+# Exercise 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

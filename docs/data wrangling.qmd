@@ -301,13 +301,6 @@ country_gas_final <- joined_countries|>
 
 ```{r}
 #cleaned_data_countries <- joined_countries |> drop_na()
-
-vl_chart(country_gas_final)|>
-  vl_mark_bar() |>
-  vl_encode_x("year:T") |>
-  vl_encode_y("gas_prices:Q", title = "gas prices (US $)")|>
-  vl_encode_column("sub-region:N", columns = 2)
-
 ```
 
 
