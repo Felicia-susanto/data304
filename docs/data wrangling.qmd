@@ -270,7 +270,6 @@ countries <- read_csv("https://raw.githubusercontent.com/lukes/ISO-3166-Countrie
 ```{r joining data}
 
 #giving both datasets common names
-
 countries <- countries %>% rename(country = name)
 
 joined_countries <- gas_prices %>% inner_join(countries, by = "country")
@@ -292,19 +291,39 @@ print(unmatched_country_countries$country)
 ```
 
 ```{r}
+country_gas_final <- joined_countries|>
+    pivot_longer(cols = 
+        c("1991","1992","1993","1994","1995","1996", "1997","1998","1999", "2000","2001", "2002","2003", "2004","2005","2006", "2007", "2008","2009", "2010", "2011","2012", "2013", "2014", "2015", "2016"),
+        names_to = "year",
+        values_to = "gas_prices",
+        values_transform = list(gas_prices = as.numeric))
+```
+
+```{r}
 #cleaned_data_countries <- joined_countries |> drop_na()
 
-vl_chart(joined_countries)|>
+vl_chart(country_gas_final)|>
   vl_mark_bar() |>
-  vl_fold(
-    c("1998", "2000", "2002", "2004", "2006", "2008", "2010", "2012"),
-    as = c("year", "gas_price")) |>
   vl_encode_x("year:T") |>
-  vl_encode_y("median_income:Q", title = "median income (USD)")|>
+  vl_encode_y("gas_prices:Q", title = "gas prices (US $)")|>
   vl_encode_column("sub-region:N", columns = 2)
 
 ```
 
+
+```{r}
+#my xOffset doesn't seem to be working in grouping the bars together per subregion...
+
+vl_chart(country_gas_final, width = 300) |>
+  vl_mark_bar() |>
+  vl_filter("datum.year == 2000 | datum.year == 2002 | datum.year == 2004 | datum.year == 2006 | datum.year == 2008 | datum.year == 2010 | datum.year == 2012 | datum.year == 2014 |datum.year == 2016") |>
+  vl_encode_x("year:O", title = "Year") |>
+  vl_encode_xOffset("sub-region:N") |>  # Group bars by sub-region
+  vl_encode_y("gas_prices:Q", title = "Gas Prices (US $)") |>
+  vl_facet("region:N", columns = 2) |>   # Facet by region
+  vl_encode_color("country:N", title = "Country") |>  # Color bars by country
+  vl_encode_tooltip_array(list("country", "gas_prices", "sub-region", "country-code"))
+```
 
 
 
