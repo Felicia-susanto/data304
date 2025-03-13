@@ -181,6 +181,7 @@ vl_chart(width = 300) |>
 
 This graph tells a story about how each kit is compared to one another in their genetic share. I faceted by twin so it's easier to see exactly how each kit is different for each twin side by side. The tooltip also helps give extra information like more detailed genetic share for each part of the bar graph. For some kits, the genetic share is seen to be over the value 1 (twin 3A, 23andMe) which I don't think should happen because the total genetic share should be 1. From this graph, we can tell the accuracy and compare differences across kits. 
 
+
 ## d
 story under each graph.
 
@@ -194,6 +195,7 @@ challenge_data <- fromJSON("https://calvin-data304.netlify.app/data/swd-lets-pra
 This data shows the completion rates for an email marketing campaign and also the response rate. The problem is that the response rate is low and the completion rate is high, but the completion rate comes from the total people who responded, so it shouldn't be more than the response rate. There should be a new variable that calculates the completion rate with respect to the response rate. So how many people actually completed the survey, under the amount of people that actually responded. 
 
 ```{r}
+#| code-fold: true
 challenge_data <- challenge_data |>
   separate(Date, into = c("quarter", "year"), sep = "-") |>
   mutate(
@@ -301,6 +303,7 @@ vl_layer(FR, Contraception, FP, FR2, Contraception2, FP2) |>
 ```
 
 ```{r}
+#| code-fold: true
 #This gives a legend for color
 Tanzania_Data_long <- tanzania|>
   pivot_longer(cols = c(Fertility_Rate, Contraception_Use, Unmet_FP), 
@@ -318,6 +321,20 @@ vl_chart(Tanzania_Data_long) |>
   vl_add_properties(title = "Women's Fertility Rate, Contraception, and Family Planning in Tanzania")
 
 ```
+
+```{r}
+#this uses repeat
+#| code-fold: true
+vl_chart(Tanzania_Data_long) |>
+  vl_mark_line() |>
+  vl_encode_x("Survey_Year:O") |>
+  vl_encode_y("Value:Q") |>
+  vl_encode_color("Category:N") |>
+  vl_repeat_col("Category:N") |>
+  vl_encode_facet("Category:N", title = "") |>
+  vl_add_properties(title = "Tanzania Women's fertility Over Time")
+```
+
 
 ## c
 
@@ -345,6 +362,7 @@ penguins <- fromJSON("https://raw.githubusercontent.com/vega/vega-datasets/refs/
 ```
 
 ```{r}
+#| code-fold: true
 penguinsplot <- vl_chart(penguins) |>
   vl_add_properties(title = "Penguin Measurements Interactive Plot") |>
   vl_mark_point() |>
@@ -417,7 +435,7 @@ I considered other visualizations, such as using facet plots by island or a heat
 
 * facets: used in comparing kits and comparing twins
 
-* concatenation or repeat: masterpiece, repeat for sex
+* concatenation or repeat: tanzania health repeats
 
 * non-default settings for a channel’s scale or guide: used tableau10 for color in comparing twins, sorted the twin field as well under vl_encode_x, mutate date for challenge.
 
