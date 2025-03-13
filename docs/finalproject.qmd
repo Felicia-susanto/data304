@@ -340,6 +340,74 @@ However, unmet family planning is still relatively stable, meaning there might s
 
 # Exercise 4
 
+```{r}
+penguins <- fromJSON("https://raw.githubusercontent.com/vega/vega-datasets/refs/heads/main/data/penguins.json")
+```
+
+```{r}
+penguinsplot <- vl_chart(penguins) |>
+  vl_add_properties(title = "Penguin Measurements Interactive Plot") |>
+  vl_mark_point() |>
+  vl_encode_x("Beak Length (mm):Q", title = "Beak Length (mm)", scale = list(domain = list(20, 90))) |>
+  vl_encode_y("Flipper Length (mm):Q", title = "Flipper Length (mm)", scale = list(domain = list(170, 240))) |>
+  vl_encode_size("Body Mass (g):Q", title = "Body Mass (g)") |>
+  vl_encode_color(
+    "Species:N",
+    title = "Species",
+    scale = list(
+      domain = list("Adelie", "Gentoo", "Chinstrap"),
+      range = list("steelblue", "goldenrod", "tomato")
+    )
+  ) |>
+  vl_encode_tooltip_array(list(
+    "Beak Length (mm)",
+    "Flipper Length (mm)",
+    "Body Mass (g)",
+    "Island",
+    "Species"
+  ))
+
+penguinsplot |>
+  vl_add_parameter("width", value = 200) |>
+  vl_add_parameter("height", value = 200) |>
+  vl_bind_range_input("width", min = 100, max = 400, step = 1) |>
+  vl_bind_range_input("height", min = 100, max = 400, step = 1) |>
+  vl_add_properties(
+    width = list(expr = "width"),
+    height = list(expr = "height")
+  ) |>
+  vl_add_parameter("Island", value = "All") |> 
+  vl_bind_select_input(
+    parameter_name = "Island",
+    name = "Island: ",
+    options = list("All", "Torgersen", "Dream", "Biscoe")
+  ) |>
+  vl_filter("Island == 'All' || datum.Island == Island")|>
+  vl_add_point_selection(
+    "species_param",
+    bind = "legend",
+    encodings = list("color")
+  ) |>
+  vl_add_point_selection(
+    "size_param",
+    bind = "legend",
+    encodings = list("size")
+  ) |>
+  vl_encode_opacity(value = 0.2) |>
+  vl_condition_opacity(param = "species_param", value = 1) |>
+  vl_condition_opacity(param = "size_param", value = 1)
+
+```
+
+
+I chose a scatterplot because it best represents the data I’m trying to encode. Both beak length and flipper length are quantitative variables, so a scatterplot is the most effective way to display their relationship. I made sure that the scale for both axes remains consistent even when zooming in, ensuring that the jump between each point is the same. Since both variables are measured in millimeters, I kept the scales aligned for accurate visual comparison.
+
+I chose not to start the axes at zero, and that’s okay because this is a scatterplot, not a bar chart, where starting at zero is necessary for comparing proportions. The key was maintaining the same scale for both axes so the comparison remains meaningful.
+
+I added interactive legends and tooltips to make the graph more engaging and informative. Just by hovering over a few dots, we can quickly access a lot of information, which is helpful since many of the points are clustered in one area. The interactive legend also allows for adjusting the visibility of different species and body mass sizes. By adding opacity adjustments, the graph becomes more readable—areas with higher point density appear darker, making it easier to see where most data points are concentrated.
+
+I considered other visualizations, such as using facet plots by island or a heatmap, but I felt that a scatterplot was the clearest way to show the relationships between these variables. The facets would have separated the data too much, making it harder to compare species across islands, and a heatmap wouldn't have captured the individual data points as effectively.
+
 
 # Exercise 5
 
@@ -349,16 +417,27 @@ However, unmet family planning is still relatively stable, meaning there might s
 
 * facets: used in comparing kits and comparing twins
 
-* concatenation or repeat:
+* concatenation or repeat: masterpiece, repeat for sex
 
 * non-default settings for a channel’s scale or guide: used tableau10 for color in comparing twins, sorted the twin field as well under vl_encode_x, mutate date for challenge.
 
 * tooltips: used in most of my graphics: exercise 2, exercise 3
 
-* another kind of interaction (panning/zooming, brushing, sliders, etc.): 
+* another kind of interaction (panning/zooming, brushing, sliders, etc.): used dropdown, sliders, and interactive legends for exercise 4
 
 
 # Exercise 6
+
+#### a
+
+In my masterpiece, I learned how to add the option "all" in a dropdown box that lets us use all of the different options in a variable all at once. It's like showing how the graph would be without the filtering while still being able to choose specific kinds of variable types as well
+
+#### b
+
+In wilke chapter 6, he mentions that the use of bar charts are bad for axes that don't start at 0, because of that, I used a scatter plot like he suggested instead. I felt like I had to zoom into the penguins graph because most of the points were concentrated in the upper right corner of the graph, so if I zoom the graph in, then it would make it easier to see individual points and the spread of the points. 
+
+He also mentions the importance of keeping the scales of the x and y axis the same (especially in my case where I am comparing beak and flipper sizes and both are in mm) so that it would not be misleading, so I implemented both of these in my graphs.
+
 
 
 
