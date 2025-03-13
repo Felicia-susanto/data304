@@ -20,7 +20,9 @@ library(readxl)
 ```
 
 # Exercise 1
+
 ## a
+
 ```{r}
 #| code-fold: true 
 '
@@ -89,7 +91,7 @@ genetics_wide <- read.csv("https://calvin-data304.netlify.app/data/twins-genetic
 genetics_long <- read.csv("https://calvin-data304.netlify.app/data/twins-genetics-long.csv")
 ```
 
-```
+```         
 #| code-fold: true 
 vl_chart() |>
   vl_mark_bar() |>
@@ -102,7 +104,6 @@ vl_chart() |>
   vl_facet(field = "region", type = "nominal", columns = 2) |>
   vl_encode_color("pair:N", title = "Pairs", scale = list(scheme = "tableau10")) |>
   vl_add_data(genetics_long)
-
 ```
 
 ```{r}
@@ -179,20 +180,21 @@ vl_chart(width = 300) |>
   vl_add_data(genetics_long)
 ```
 
-This graph tells a story about how each kit is compared to one another in their genetic share. I faceted by twin so it's easier to see exactly how each kit is different for each twin side by side. The tooltip also helps give extra information like more detailed genetic share for each part of the bar graph. For some kits, the genetic share is seen to be over the value 1 (twin 3A, 23andMe) which I don't think should happen because the total genetic share should be 1. From this graph, we can tell the accuracy and compare differences across kits. 
-
+This graph tells a story about how each kit is compared to one another in their genetic share. I faceted by twin so it's easier to see exactly how each kit is different for each twin side by side. The tooltip also helps give extra information like more detailed genetic share for each part of the bar graph. For some kits, the genetic share is seen to be over the value 1 (twin 3A, 23andMe) which I don't think should happen because the total genetic share should be 1. From this graph, we can tell the accuracy and compare differences across kits.
 
 ## d
+
 story under each graph.
 
 # Exercise 2
 
 #### email marketing challenge
+
 ```{r}
 challenge_data <- fromJSON("https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-13.json")
 ```
 
-This data shows the completion rates for an email marketing campaign and also the response rate. The problem is that the response rate is low and the completion rate is high, but the completion rate comes from the total people who responded, so it shouldn't be more than the response rate. There should be a new variable that calculates the completion rate with respect to the response rate. So how many people actually completed the survey, under the amount of people that actually responded. 
+This data shows the completion rates for an email marketing campaign and also the response rate. The problem is that the response rate is low and the completion rate is high, but the completion rate comes from the total people who responded, so it shouldn't be more than the response rate. There should be a new variable that calculates the completion rate with respect to the response rate. So how many people actually completed the survey, under the amount of people that actually responded.
 
 ```{r}
 #| code-fold: true
@@ -237,7 +239,8 @@ vl_layer(responseplot, completionplot, completionpoint) |>
 # Exercise 3
 
 ## a
-```
+
+```         
 ##Idk why this isn't working, but i can access the file through pulling it through my laptop.
 Tanzania_Data <- read_csv("https://github.com/Felicia-susanto/data304/raw/refs/heads/main/data/Tazania%20Data.xlsx")
 ```
@@ -251,11 +254,12 @@ tanzania <- data.frame(
   Unmet_FP = c(0.278, 0.278, 0.26, 0.223, 0.243, 0.243, 0.223, 0.221, 0.221)
 )
 ```
+
 For surveys that were conducted in 2 years, I duplicated their values and put both years in with the same value. I also changed all the percentages to be proportions for now.
 
 ## b
 
-```
+```         
 FR <- vl_chart(Tazania_Data) |>
   vl_mark_line() |>
   vl_encode_x("Survey_Year:O") |>
@@ -324,7 +328,6 @@ vl_chart(Tanzania_Data_long) |>
 
 ```{r}
 #this uses repeat
-#| code-fold: true
 vl_chart(Tanzania_Data_long) |>
   vl_mark_line() |>
   vl_encode_x("Survey_Year:O") |>
@@ -335,25 +338,17 @@ vl_chart(Tanzania_Data_long) |>
   vl_add_properties(title = "Tanzania Women's fertility Over Time")
 ```
 
-
 ## c
 
 This graph tells a story about women's fertility rates, contraception use, and unmet family planning needs in Tanzania over time.
 
-Fertility Rate (Blue Line):
-The fertility rate has declined steadily from around 6 children per woman in the early 1990s to around 5 in the 2010s.
-This suggests improvements in reproductive health education, economic factors, and possibly access to family planning services.
+Fertility Rate (Blue Line): The fertility rate has declined steadily from around 6 children per woman in the early 1990s to around 5 in the 2010s. This suggests improvements in reproductive health education, economic factors, and possibly access to family planning services.
 
-Contraception Use (Red Line):
-The use of contraception has gradually increased over time, though it looks like it remains relatively low compared to fertility rates, we must remember that it is a proportion, so it only goes up to 1.
-This could indicate increased awareness and availability of contraceptive methods.
+Contraception Use (Red Line): The use of contraception has gradually increased over time, though it looks like it remains relatively low compared to fertility rates, we must remember that it is a proportion, so it only goes up to 1. This could indicate increased awareness and availability of contraceptive methods.
 
-Unmet Family Planning Needs (Orange Line):
-The unmet need for family planning appears relatively low and stable over the years.
-If this line is declining, it suggests that more women are gaining access to the contraception they need. However, if it remains constant or rises, it indicates persistent barriers.
+Unmet Family Planning Needs (Orange Line): The unmet need for family planning appears relatively low and stable over the years. If this line is declining, it suggests that more women are gaining access to the contraception they need. However, if it remains constant or rises, it indicates persistent barriers.
 
-The declining fertility rate is possibly influenced by increasing contraception use and improved family planning services.
-However, unmet family planning is still relatively stable, meaning there might still be cultural, economic, or logistical barriers limiting access to some families.
+The declining fertility rate is possibly influenced by increasing contraception use and improved family planning services. However, unmet family planning is still relatively stable, meaning there might still be cultural, economic, or logistical barriers limiting access to some families.
 
 # Exercise 4
 
@@ -417,7 +412,6 @@ penguinsplot |>
 
 ```
 
-
 I chose a scatterplot because it best represents the data I’m trying to encode. Both beak length and flipper length are quantitative variables, so a scatterplot is the most effective way to display their relationship. I made sure that the scale for both axes remains consistent even when zooming in, ensuring that the jump between each point is the same. Since both variables are measured in millimeters, I kept the scales aligned for accurate visual comparison.
 
 I chose not to start the axes at zero, and that’s okay because this is a scatterplot, not a bar chart, where starting at zero is necessary for comparing proportions. The key was maintaining the same scale for both axes so the comparison remains meaningful.
@@ -426,23 +420,21 @@ I added interactive legends and tooltips to make the graph more engaging and inf
 
 I considered other visualizations, such as using facet plots by island or a heatmap, but I felt that a scatterplot was the clearest way to show the relationships between these variables. The facets would have separated the data too much, making it harder to compare species across islands, and a heatmap wouldn't have captured the individual data points as effectively.
 
-
 # Exercise 5
 
-* an encoding channel other than x or y: used color for most graphs (comparing twins, kits, challenge, tanzania )
+-   an encoding channel other than x or y: used color for most graphs (comparing twins, kits, challenge, tanzania )
 
-* layers: Used in exercise 2 to graph completion rates and response rates
+-   layers: Used in exercise 2 to graph completion rates and response rates
 
-* facets: used in comparing kits and comparing twins
+-   facets: used in comparing kits and comparing twins
 
-* concatenation or repeat: tanzania health repeats
+-   concatenation or repeat: tanzania health repeats
 
-* non-default settings for a channel’s scale or guide: used tableau10 for color in comparing twins, sorted the twin field as well under vl_encode_x, mutate date for challenge.
+-   non-default settings for a channel’s scale or guide: used tableau10 for color in comparing twins, sorted the twin field as well under vl_encode_x, mutate date for challenge.
 
-* tooltips: used in most of my graphics: exercise 2, exercise 3
+-   tooltips: used in most of my graphics: exercise 2, exercise 3
 
-* another kind of interaction (panning/zooming, brushing, sliders, etc.): used dropdown, sliders, and interactive legends for exercise 4
-
+-   another kind of interaction (panning/zooming, brushing, sliders, etc.): used dropdown, sliders, and interactive legends for exercise 4
 
 # Exercise 6
 
@@ -452,29 +444,6 @@ In my masterpiece, I learned how to add the option "all" in a dropdown box that 
 
 #### b
 
-In wilke chapter 6, he mentions that the use of bar charts are bad for axes that don't start at 0, because of that, I used a scatter plot like he suggested instead. I felt like I had to zoom into the penguins graph because most of the points were concentrated in the upper right corner of the graph, so if I zoom the graph in, then it would make it easier to see individual points and the spread of the points. 
+In wilke chapter 6, he mentions that the use of bar charts are bad for axes that don't start at 0, because of that, I used a scatter plot like he suggested instead. I felt like I had to zoom into the penguins graph because most of the points were concentrated in the upper right corner of the graph, so if I zoom the graph in, then it would make it easier to see individual points and the spread of the points.
 
 He also mentions the importance of keeping the scales of the x and y axis the same (especially in my case where I am comparing beak and flipper sizes and both are in mm) so that it would not be misleading, so I implemented both of these in my graphs.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
