@@ -1,0 +1,383 @@
+---
+title: "Final project Data 304"
+author: "felicia susanto"
+format: html
+editor: visual
+code-tools: true
+---
+
+```{r libraries}
+#| message: false
+library(vegawidget)
+library(readr)
+library(dplyr)
+library(vegalite)
+library(lubridate)
+library(vegabrite)
+library(tidyr)
+library(jsonlite)
+library(readxl)
+```
+
+# Exercise 1
+## a
+```{r}
+#| code-fold: true 
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/twins-genetics-wide.json"
+  },
+  "mark": {"type": "bar"},
+  "title": "Comparing Twins Genetic Similarity According to Genealogy Services",
+  "height": 300,
+  "width": 300,
+  "encoding": {
+    "x": {"field": "id", "type": "nominal", "title": ""},
+    "xOffset": {"field": "region"},
+    "color": {"field": "region", "title": "Region of Ancestry"},
+    "y": {
+      "field": "Ancestry",
+      "type": "quantitative",
+      "title": "Ancestry.com Score"
+    },
+    "facet": {"field": "pair", "columns": 3, "title": "Pairs of Twins"}
+  }
+}
+'|> as_vegaspec()
+```
+
+This graph was taken from the homework 4 gallery and something I like about it is that I can see all the twins compared to each other in one graph. I do have to slide around a bit, but if we make the graphs smaller then they can fit into a smaller screen without needing to scroll as much. I also like the use of color which distinguishes each region so we know how each region differs for each set of twins. It also has labels on the x axis that shows individual people (so twin a and twin b for each pair of twins). This graph also allows me to compare each region, for each twin easily because bar graphs are one of the easier graphs to interpret and this graph shows all the bars at once.
+
+## b
+
+```{r}
+#| code-fold: true 
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "DNA Kits Similarities/Differences",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json",
+    "format": {"type": "json"}
+  },
+  "height": 400,
+  "width": 450,
+  "mark": "boxplot",
+  "encoding": {
+    "x": {"field": "kit", "type": "nominal", "title": "DNA Kit"},
+    "y": {
+      "field": "genetic share",
+      "type": "quantitative",
+      "title": "Genetic Share"
+    },
+    "color": {"field": "kit", "type": "nominal", "title": "DNA Kit"}
+  }
+}
+'|> as_vegaspec()
+```
+
+This graph was taken from the homework 4 gallery, and something I don't like about it is the use of color here. I think the use of color is redundant because each boxplot is already labeled and represents different DNA kits, so the use of different colors isn't really helpful. In addition, there are only 3 boxplots, so we really don't need the help of color to distinguish the plots. It honestly isn't a big deal, and the use of color would not make any difference, but that is one thing I noticed immediately. I also don't think this graphic is good at immediately telling a story because I don't understand what the plots are trying to say. What does the genetic share (y-axis) represent here, and what does it have to do with comparing the kits? Is it the average genetic share each kit finds? Or is it the genetic share each kit has compared to the total genetic share?
+
+## c
+
+#### comparing twins
+
+```{r}
+genetics_wide <- read.csv("https://calvin-data304.netlify.app/data/twins-genetics-wide.csv")
+genetics_long <- read.csv("https://calvin-data304.netlify.app/data/twins-genetics-long.csv")
+```
+
+```
+#| code-fold: true 
+vl_chart() |>
+  vl_mark_bar() |>
+  vl_add_properties(title ="Comparing Twins Genetic Shares") |>
+  vl_encode_x(field = "twin:N", title = "Twin", sort = c(
+        "1A", "1B", "2A", "2B", "3A", "3B",
+        "4A", "4B", "5A", "5B", "6A", "6B"
+  )) |>
+  vl_encode_y(field = "genetic share:Q", title = "Genetic Share") |>
+  vl_facet(field = "region", type = "nominal", columns = 2) |>
+  vl_encode_color("pair:N", title = "Pairs", scale = list(scheme = "tableau10")) |>
+  vl_add_data(genetics_long)
+
+```
+
+```{r}
+#| code-fold: true 
+'
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json"
+  },
+  "width": 600,
+  "height": 900,
+  "title": "Twins genetic shares similarities/differences",
+  "facet": {"field": "region", "type": "nominal", "title": "Region"},
+  "spec": {
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "field": "twin",
+        "type": "nominal",
+        "title": "Twin",
+        "sort": [
+          "1A",
+          "1B",
+          "2A",
+          "2B",
+          "3A",
+          "3B",
+          "4A",
+          "4B",
+          "5A",
+          "5B",
+          "6A",
+          "6B"
+        ]
+      },
+      "y": {
+        "field": "genetic share",
+        "type": "quantitative",
+        "title": "Genetic Share"
+      },
+      "color": {
+        "field": "pair",
+        "type": "nominal",
+        "title": "Pairs",
+        "scale": {"scheme": "tableau10"}
+      },
+      "tooltip": [
+        {"field": "genetic share", "type": "quantitative", "title": "Genetic Share"},
+        {"field": "kit", "type": "nominal", "title": "Kit"}
+      ]
+    }
+  }
+}
+' |> as_vegaspec()
+
+```
+
+This graph tells the story of genetic sharing among twins, allowing us to compare these shares between each twin pair. The tooltip provides valuable insight by displaying the kit used and the corresponding genetic share it contributes to each twin pair. It also shows the overall genetic shares between the twins. The stacked bar chart is helpful in conveying this information, and the use of distinct colors and grouped bars facilitates easy comparison of twins in each pair. Moreover, the facet by region feature enables us to observe the regional genetic contributions, which, ideally, should be similar for each twin individual when compared to their twin.
+
+#### comparing kits
+
+```{r}
+#| code-fold: true 
+vl_chart(width = 300) |> 
+  vl_mark_bar() |> 
+  vl_encode_x("kit:N") |>
+  vl_encode_y("genetic.share:Q", title = "genetic share") |>
+  vl_encode_color("pair:N") |> 
+  vl_encode_xOffset("twin:O") |> 
+  vl_facet("pair:N") |>
+  vl_encode_tooltip_array(list("twin", "genetic.share", "region", "kit")) |>
+  vl_add_properties(title = "comparing 3 kits across twins")|>
+  vl_add_data(genetics_long)
+```
+
+This graph tells a story about how each kit is compared to one another in their genetic share. I faceted by twin so it's easier to see exactly how each kit is different for each twin side by side. The tooltip also helps give extra information like more detailed genetic share for each part of the bar graph. For some kits, the genetic share is seen to be over the value 1 (twin 3A, 23andMe) which I don't think should happen because the total genetic share should be 1. From this graph, we can tell the accuracy and compare differences across kits. 
+
+## d
+story under each graph.
+
+# Exercise 2
+
+#### email marketing challenge
+```{r}
+challenge_data <- fromJSON("https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-13.json")
+```
+
+This data shows the completion rates for an email marketing campaign and also the response rate. The problem is that the response rate is low and the completion rate is high, but the completion rate comes from the total people who responded, so it shouldn't be more than the response rate. There should be a new variable that calculates the completion rate with respect to the response rate. So how many people actually completed the survey, under the amount of people that actually responded. 
+
+```{r}
+challenge_data <- challenge_data |>
+  separate(Date, into = c("quarter", "year"), sep = "-") |>
+  mutate(
+    quarter = parse_number(quarter),
+    year = parse_number(year),
+    date_str = paste0(year, "-", 3 * quarter - 2, "-01" ),
+    date = ymd(date_str))
+  
+challenge_data <- challenge_data |> mutate(TrueCompletionRate = `Completion Rate` * `Response Rate`)
+```
+
+```{r}
+#| code-fold: true
+
+responseplot <- vl_chart(challenge_data) |>
+  vl_mark_bar() |>
+  vl_encode_x("date:T") |>
+  vl_encode_y("Response Rate:Q") |>
+  vl_encode_color(value = "blue")|>
+  vl_encode_tooltip_array(list("Response Rate"))
+
+completionplot <- vl_chart(challenge_data) |>
+  vl_mark_line() |>
+  vl_encode_x("date:T") |>
+  vl_encode_y("TrueCompletionRate:Q") |>
+  vl_encode_color(value = "red")
+
+completionpoint <- vl_chart(challenge_data) |>
+  vl_mark_point() |>
+  vl_encode_x("date:T") |>
+  vl_encode_y("TrueCompletionRate:Q") |>
+  vl_encode_color(value = "red")|>
+  vl_encode_tooltip_array(list("TrueCompletionRate", "Completion Rate", "Response Rate"))
+
+vl_layer(responseplot, completionplot, completionpoint) |>
+  vl_add_properties(title = "Completion Rates in Proportion to Response Rate")
+```
+
+# Exercise 3
+
+## a
+```
+##Idk why this isn't working, but i can access the file through pulling it through my laptop.
+Tanzania_Data <- read_csv("https://github.com/Felicia-susanto/data304/raw/refs/heads/main/data/Tazania%20Data.xlsx")
+```
+
+```{R}
+#just so the code can run from other devices
+tanzania <- data.frame(
+  Survey_Year = c(1991, 1992, 1996, 1999, 2004, 2005, 2010, 2015, 2016),
+  Fertility_Rate = c(6.2, 6.2, 5.8, 5.6, 5.7, 5.7, 5.4, 5.2, 5.2),
+  Contraception_Use = c(0.059, 0.059, 0.117, 0.156, 0.176, 0.176, 0.236, 0.384, 0.384),
+  Unmet_FP = c(0.278, 0.278, 0.26, 0.223, 0.243, 0.243, 0.223, 0.221, 0.221)
+)
+```
+For surveys that were conducted in 2 years, I duplicated their values and put both years in with the same value. I also changed all the percentages to be proportions for now.
+
+## b
+
+```
+FR <- vl_chart(Tazania_Data) |>
+  vl_mark_line() |>
+  vl_encode_x("Survey_Year:O") |>
+  vl_encode_y("Fertility_Rate:Q") |>
+  vl_encode_color(value = "blue")|>
+  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))
+
+Contraception <- vl_chart(Tazania_Data) |>
+  vl_mark_line() |>
+  vl_encode_x("Survey_Year:O") |>
+  vl_encode_y("Contraception_Use:Q") |>
+  vl_encode_color(value = "red")|>
+  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))
+
+FP <- vl_chart(Tazania_Data) |>
+  vl_mark_line() |>
+  vl_encode_x("Survey_Year:O") |>
+  vl_encode_y("Unmet_FP:Q") |>
+  vl_encode_color(value = "orange")|>
+  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))
+
+FR2 <- vl_chart(Tazania_Data) |>
+  vl_mark_point() |>
+  vl_encode_x("Survey_Year:O") |>
+  vl_encode_y("Fertility_Rate:Q") |>
+  vl_encode_color(value = "blue")|>
+  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))
+
+Contraception2 <- vl_chart(Tazania_Data) |>
+  vl_mark_point() |>
+  vl_encode_x("Survey_Year:O") |>
+  vl_encode_y("Contraception_Use:Q") |>
+  vl_encode_color(value = "red")|>
+  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))
+
+FP2 <- vl_chart(Tazania_Data) |>
+  vl_mark_point() |>
+  vl_encode_x("Survey_Year:O") |>
+  vl_encode_y("Unmet_FP:Q") |>
+  vl_encode_color(value = "orange")|>
+  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))
+
+vl_layer(FR, Contraception, FP, FR2, Contraception2, FP2) |>
+  vl_add_properties(title = "Fertility Rate, Contraception, and Family Planning in Tanzania")
+```
+
+```{r}
+#This gives a legend for color
+Tanzania_Data_long <- tanzania|>
+  pivot_longer(cols = c(Fertility_Rate, Contraception_Use, Unmet_FP), 
+               names_to = "Category", 
+               values_to = "Value")
+vl_chart(Tanzania_Data_long) |>
+  vl_mark_line() |>
+  vl_encode_x("Survey_Year:O") |>
+  vl_encode_y("Value:Q", title = "Rate") |>
+  vl_encode_color(field = "Category:N", 
+                  title = "Indicator", 
+                  scale = list(domain = c("Fertility_Rate", "Unmet_FP", "Contraception_Use"), 
+                               range = c("blue", "orange", "red"))) |>
+  vl_encode_tooltip_array(list("Survey_Year", "Category", "Value")) |>
+  vl_add_properties(title = "Women's Fertility Rate, Contraception, and Family Planning in Tanzania")
+
+```
+
+## c
+
+This graph tells a story about women's fertility rates, contraception use, and unmet family planning needs in Tanzania over time.
+
+Fertility Rate (Blue Line):
+The fertility rate has declined steadily from around 6 children per woman in the early 1990s to around 5 in the 2010s.
+This suggests improvements in reproductive health education, economic factors, and possibly access to family planning services.
+
+Contraception Use (Red Line):
+The use of contraception has gradually increased over time, though it looks like it remains relatively low compared to fertility rates, we must remember that it is a proportion, so it only goes up to 1.
+This could indicate increased awareness and availability of contraceptive methods.
+
+Unmet Family Planning Needs (Orange Line):
+The unmet need for family planning appears relatively low and stable over the years.
+If this line is declining, it suggests that more women are gaining access to the contraception they need. However, if it remains constant or rises, it indicates persistent barriers.
+
+The declining fertility rate is possibly influenced by increasing contraception use and improved family planning services.
+However, unmet family planning is still relatively stable, meaning there might still be cultural, economic, or logistical barriers limiting access to some families.
+
+# Exercise 4
+
+
+# Exercise 5
+
+* an encoding channel other than x or y: used color for most graphs (comparing twins, kits, challenge, tanzania )
+
+* layers: Used in exercise 2 to graph completion rates and response rates
+
+* facets: used in comparing kits and comparing twins
+
+* concatenation or repeat:
+
+* non-default settings for a channel’s scale or guide: used tableau10 for color in comparing twins, sorted the twin field as well under vl_encode_x, mutate date for challenge.
+
+* tooltips: used in most of my graphics: exercise 2, exercise 3
+
+* another kind of interaction (panning/zooming, brushing, sliders, etc.): 
+
+
+# Exercise 6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

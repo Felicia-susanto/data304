@@ -1,0 +1,2883 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="felicia susanto">
+
+<title>Final project Data 304</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="finalproject_files/libs/clipboard/clipboard.min.js"></script>
+<script src="finalproject_files/libs/quarto-html/quarto.js"></script>
+<script src="finalproject_files/libs/quarto-html/popper.min.js"></script>
+<script src="finalproject_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="finalproject_files/libs/quarto-html/anchor.min.js"></script>
+<link href="finalproject_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="finalproject_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="finalproject_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="finalproject_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="finalproject_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="finalproject_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="finalproject_files/libs/vega-5.24.0/vega@5.24.0.min.js"></script>
+
+<script src="finalproject_files/libs/vega-lite-5.16.3/vega-lite@5.16.3.min.js"></script>
+
+<link href="finalproject_files/libs/vega-embed-6.22.2/vega-embed.css" rel="stylesheet">
+
+<script src="finalproject_files/libs/vega-embed-6.22.2/vega-embed@6.22.2.min.js"></script>
+
+<script src="finalproject_files/libs/vegawidget-vl5-binding-0.5.0/vegawidget-vl5.js"></script>
+
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Final project Data 304</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>felicia susanto </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegalite)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegabrite)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercise-1" class="level1">
+<h1>Exercise 1</h1>
+<section id="a" class="level2">
+<h2 class="anchored" data-anchor-id="a">a</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "https://calvin-data304.netlify.app/data/twins-genetics-wide.json"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">  "mark": {"type": "bar"},</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": "Comparing Twins Genetic Similarity According to Genealogy Services",</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 300,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 300,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">  "encoding": {</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">    "x": {"field": "id", "type": "nominal", "title": ""},</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">    "xOffset": {"field": "region"},</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">    "color": {"field": "region", "title": "Region of Ancestry"},</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">    "y": {</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "Ancestry",</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "quantitative",</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Ancestry.com Score"</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="st">    "facet": {"field": "pair", "columns": 3, "title": "Pairs of Twins"}</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="st">'</span><span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="htmlwidget-8a14dbc4186e299b1c78" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8a14dbc4186e299b1c78">{"x":{
+  "chart_spec": {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://calvin-data304.netlify.app/data/twins-genetics-wide.json"
+    },
+    "mark": {
+      "type": "bar"
+    },
+    "title": "Comparing Twins Genetic Similarity According to Genealogy Services",
+    "height": 300,
+    "width": 300,
+    "encoding": {
+      "x": {
+        "field": "id",
+        "type": "nominal",
+        "title": ""
+      },
+      "xOffset": {
+        "field": "region"
+      },
+      "color": {
+        "field": "region",
+        "title": "Region of Ancestry"
+      },
+      "y": {
+        "field": "Ancestry",
+        "type": "quantitative",
+        "title": "Ancestry.com Score"
+      },
+      "facet": {
+        "field": "pair",
+        "columns": 3,
+        "title": "Pairs of Twins"
+      }
+    }
+  },
+  "embed_options": {
+    "renderer": "canvas",
+    "defaultStyle": true
+  }
+},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>This graph was taken from the homework 4 gallery and something I like about it is that I can see all the twins compared to each other in one graph. I do have to slide around a bit, but if we make the graphs smaller then they can fit into a smaller screen without needing to scroll as much. I also like the use of color which distinguishes each region so we know how each region differs for each set of twins. It also has labels on the x axis that shows individual people (so twin a and twin b for each pair of twins). This graph also allows me to compare each region, for each twin easily because bar graphs are one of the easier graphs to interpret and this graph shows all the bars at once.</p>
+</section>
+<section id="b" class="level2">
+<h2 class="anchored" data-anchor-id="b">b</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": "DNA Kits Similarities/Differences",</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json",</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "format": {"type": "json"}</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 400,</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 450,</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">  "mark": "boxplot",</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">  "encoding": {</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">    "x": {"field": "kit", "type": "nominal", "title": "DNA Kit"},</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">    "y": {</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "genetic share",</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "quantitative",</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Genetic Share"</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="st">    "color": {"field": "kit", "type": "nominal", "title": "DNA Kit"}</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="st">'</span><span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="htmlwidget-ab8aa090087ceabbd75a" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ab8aa090087ceabbd75a">{"x":{
+  "chart_spec": {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "DNA Kits Similarities/Differences",
+    "data": {
+      "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json",
+      "format": {
+        "type": "json"
+      }
+    },
+    "height": 400,
+    "width": 450,
+    "mark": "boxplot",
+    "encoding": {
+      "x": {
+        "field": "kit",
+        "type": "nominal",
+        "title": "DNA Kit"
+      },
+      "y": {
+        "field": "genetic share",
+        "type": "quantitative",
+        "title": "Genetic Share"
+      },
+      "color": {
+        "field": "kit",
+        "type": "nominal",
+        "title": "DNA Kit"
+      }
+    }
+  },
+  "embed_options": {
+    "renderer": "canvas",
+    "defaultStyle": true
+  }
+},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>This graph was taken from the homework 4 gallery, and something I don’t like about it is the use of color here. I think the use of color is redundant because each boxplot is already labeled and represents different DNA kits, so the use of different colors isn’t really helpful. In addition, there are only 3 boxplots, so we really don’t need the help of color to distinguish the plots. It honestly isn’t a big deal, and the use of color would not make any difference, but that is one thing I noticed immediately. I also don’t think this graphic is good at immediately telling a story because I don’t understand what the plots are trying to say. What does the genetic share (y-axis) represent here, and what does it have to do with comparing the kits? Is it the average genetic share each kit finds? Or is it the genetic share each kit has compared to the total genetic share?</p>
+</section>
+<section id="c" class="level2">
+<h2 class="anchored" data-anchor-id="c">c</h2>
+<section id="comparing-twins" class="level4">
+<h4 class="anchored" data-anchor-id="comparing-twins">comparing twins</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>genetics_wide <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://calvin-data304.netlify.app/data/twins-genetics-wide.csv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>genetics_long <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://calvin-data304.netlify.app/data/twins-genetics-long.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>#| code-fold: true 
+vl_chart() |&gt;
+  vl_mark_bar() |&gt;
+  vl_add_properties(title ="Comparing Twins Genetic Shares") |&gt;
+  vl_encode_x(field = "twin:N", title = "Twin", sort = c(
+        "1A", "1B", "2A", "2B", "3A", "3B",
+        "4A", "4B", "5A", "5B", "6A", "6B"
+  )) |&gt;
+  vl_encode_y(field = "genetic share:Q", title = "Genetic Share") |&gt;
+  vl_facet(field = "region", type = "nominal", columns = 2) |&gt;
+  vl_encode_color("pair:N", title = "Pairs", scale = list(scheme = "tableau10")) |&gt;
+  vl_add_data(genetics_long)
+</code></pre>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 600,</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 900,</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": "Twins genetic shares similarities/differences",</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">  "facet": {"field": "region", "type": "nominal", "title": "Region"},</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="st">  "spec": {</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">    "mark": "bar",</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">    "encoding": {</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="st">      "x": {</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "twin",</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "nominal",</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="st">        "title": "Twin",</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="st">        "sort": [</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="st">          "1A",</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="st">          "1B",</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="st">          "2A",</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="st">          "2B",</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="st">          "3A",</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="st">          "3B",</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="st">          "4A",</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="st">          "4B",</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="st">          "5A",</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="st">          "5B",</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="st">          "6A",</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="st">          "6B"</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="st">        ]</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="st">      "y": {</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "genetic share",</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "quantitative",</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="st">        "title": "Genetic Share"</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="st">      "color": {</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "pair",</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "nominal",</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="st">        "title": "Pairs",</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="st">        "scale": {"scheme": "tableau10"}</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="st">      "tooltip": [</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="st">        {"field": "genetic share", "type": "quantitative", "title": "Genetic Share"},</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="st">        {"field": "kit", "type": "nominal", "title": "Kit"}</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="st">      ]</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="htmlwidget-deaef5e57c55c3af57de" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-deaef5e57c55c3af57de">{"x":{
+  "chart_spec": {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json"
+    },
+    "width": 600,
+    "height": 900,
+    "title": "Twins genetic shares similarities/differences",
+    "facet": {
+      "field": "region",
+      "type": "nominal",
+      "title": "Region"
+    },
+    "spec": {
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "twin",
+          "type": "nominal",
+          "title": "Twin",
+          "sort": [
+            "1A",
+            "1B",
+            "2A",
+            "2B",
+            "3A",
+            "3B",
+            "4A",
+            "4B",
+            "5A",
+            "5B",
+            "6A",
+            "6B"
+          ]
+        },
+        "y": {
+          "field": "genetic share",
+          "type": "quantitative",
+          "title": "Genetic Share"
+        },
+        "color": {
+          "field": "pair",
+          "type": "nominal",
+          "title": "Pairs",
+          "scale": {
+            "scheme": "tableau10"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "genetic share",
+            "type": "quantitative",
+            "title": "Genetic Share"
+          },
+          {
+            "field": "kit",
+            "type": "nominal",
+            "title": "Kit"
+          }
+        ]
+      }
+    }
+  },
+  "embed_options": {
+    "renderer": "canvas",
+    "defaultStyle": true
+  }
+},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>This graph tells the story of genetic sharing among twins, allowing us to compare these shares between each twin pair. The tooltip provides valuable insight by displaying the kit used and the corresponding genetic share it contributes to each twin pair. It also shows the overall genetic shares between the twins. The stacked bar chart is helpful in conveying this information, and the use of distinct colors and grouped bars facilitates easy comparison of twins in each pair. Moreover, the facet by region feature enables us to observe the regional genetic contributions, which, ideally, should be similar for each twin individual when compared to their twin.</p>
+</section>
+<section id="comparing-kits" class="level4">
+<h4 class="anchored" data-anchor-id="comparing-kits">comparing kits</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vl_chart</span>(<span class="at">width =</span> <span class="dv">300</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_mark_bar</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_x</span>(<span class="st">"kit:N"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_y</span>(<span class="st">"genetic.share:Q"</span>, <span class="at">title =</span> <span class="st">"genetic share"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_color</span>(<span class="st">"pair:N"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_xOffset</span>(<span class="st">"twin:O"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_facet</span>(<span class="st">"pair:N"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_tooltip_array</span>(<span class="fu">list</span>(<span class="st">"twin"</span>, <span class="st">"genetic.share"</span>, <span class="st">"region"</span>, <span class="st">"kit"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_add_properties</span>(<span class="at">title =</span> <span class="st">"comparing 3 kits across twins"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_add_data</span>(genetics_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="htmlwidget-68a026e068d3a5a60d72" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-68a026e068d3a5a60d72">{"x":{
+  "chart_spec": {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "spec": {
+      "width": 300,
+      "mark": {
+        "type": "bar"
+      },
+      "encoding": {
+        "x": {
+          "field": "kit",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "genetic\\.share",
+          "title": "genetic share",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "pair",
+          "type": "nominal"
+        },
+        "xOffset": {
+          "field": "twin",
+          "type": "ordinal"
+        },
+        "tooltip": [
+          {
+            "field": "twin"
+          },
+          {
+            "field": "genetic\\.share"
+          },
+          {
+            "field": "region"
+          },
+          {
+            "field": "kit"
+          }
+        ]
+      }
+    },
+    "facet": {
+      "field": "pair",
+      "type": "nominal"
+    },
+    "columns": 2,
+    "title": "comparing 3 kits across twins",
+    "data": {
+      "values": [
+        {
+          "twin": "1A",
+          "pair": 1,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0.9
+        },
+        {
+          "twin": "1A",
+          "pair": 1,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.676
+        },
+        {
+          "twin": "1A",
+          "pair": 1,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0.647
+        },
+        {
+          "twin": "1A",
+          "pair": 1,
+          "id": "A",
+          "region": "SE Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0.1
+        },
+        {
+          "twin": "1A",
+          "pair": 1,
+          "id": "A",
+          "region": "SE Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.32
+        },
+        {
+          "twin": "1A",
+          "pair": 1,
+          "id": "A",
+          "region": "SE Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0.333
+        },
+        {
+          "twin": "1B",
+          "pair": 1,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0.9
+        },
+        {
+          "twin": "1B",
+          "pair": 1,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.691
+        },
+        {
+          "twin": "1B",
+          "pair": 1,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0.687
+        },
+        {
+          "twin": "1B",
+          "pair": 1,
+          "id": "B",
+          "region": "SE Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0.1
+        },
+        {
+          "twin": "1B",
+          "pair": 1,
+          "id": "B",
+          "region": "SE Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.305
+        },
+        {
+          "twin": "1B",
+          "pair": 1,
+          "id": "B",
+          "region": "SE Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0.239
+        },
+        {
+          "twin": "2A",
+          "pair": 2,
+          "id": "A",
+          "region": "West Africa",
+          "kit": "Ancestry",
+          "genetic.share": 0.65
+        },
+        {
+          "twin": "2A",
+          "pair": 2,
+          "id": "A",
+          "region": "West Africa",
+          "kit": "23andMe",
+          "genetic.share": 0.762
+        },
+        {
+          "twin": "2A",
+          "pair": 2,
+          "id": "A",
+          "region": "West Africa",
+          "kit": "MyHeritage",
+          "genetic.share": 0.696
+        },
+        {
+          "twin": "2A",
+          "pair": 2,
+          "id": "A",
+          "region": "Central Africa",
+          "kit": "Ancestry",
+          "genetic.share": 0.22
+        },
+        {
+          "twin": "2A",
+          "pair": 2,
+          "id": "A",
+          "region": "Central Africa",
+          "kit": "23andMe",
+          "genetic.share": 0.076
+        },
+        {
+          "twin": "2A",
+          "pair": 2,
+          "id": "A",
+          "region": "Central Africa",
+          "kit": "MyHeritage",
+          "genetic.share": 0.12
+        },
+        {
+          "twin": "2A",
+          "pair": 2,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0.12
+        },
+        {
+          "twin": "2A",
+          "pair": 2,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.139
+        },
+        {
+          "twin": "2A",
+          "pair": 2,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0.104
+        },
+        {
+          "twin": "2A",
+          "pair": 2,
+          "id": "A",
+          "region": "SE Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0.01
+        },
+        {
+          "twin": "2A",
+          "pair": 2,
+          "id": "A",
+          "region": "SE Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.006
+        },
+        {
+          "twin": "2A",
+          "pair": 2,
+          "id": "A",
+          "region": "SE Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0
+        },
+        {
+          "twin": "2B",
+          "pair": 2,
+          "id": "B",
+          "region": "West Africa",
+          "kit": "Ancestry",
+          "genetic.share": 0.64
+        },
+        {
+          "twin": "2B",
+          "pair": 2,
+          "id": "B",
+          "region": "West Africa",
+          "kit": "23andMe",
+          "genetic.share": 0.76
+        },
+        {
+          "twin": "2B",
+          "pair": 2,
+          "id": "B",
+          "region": "West Africa",
+          "kit": "MyHeritage",
+          "genetic.share": 0.688
+        },
+        {
+          "twin": "2B",
+          "pair": 2,
+          "id": "B",
+          "region": "Central Africa",
+          "kit": "Ancestry",
+          "genetic.share": 0.23
+        },
+        {
+          "twin": "2B",
+          "pair": 2,
+          "id": "B",
+          "region": "Central Africa",
+          "kit": "23andMe",
+          "genetic.share": 0.078
+        },
+        {
+          "twin": "2B",
+          "pair": 2,
+          "id": "B",
+          "region": "Central Africa",
+          "kit": "MyHeritage",
+          "genetic.share": 0.112
+        },
+        {
+          "twin": "2B",
+          "pair": 2,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0.12
+        },
+        {
+          "twin": "2B",
+          "pair": 2,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.131
+        },
+        {
+          "twin": "2B",
+          "pair": 2,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0.106
+        },
+        {
+          "twin": "2B",
+          "pair": 2,
+          "id": "B",
+          "region": "SE Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0.01
+        },
+        {
+          "twin": "2B",
+          "pair": 2,
+          "id": "B",
+          "region": "SE Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.006
+        },
+        {
+          "twin": "2B",
+          "pair": 2,
+          "id": "B",
+          "region": "SE Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0
+        },
+        {
+          "twin": "3A",
+          "pair": 3,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0.99
+        },
+        {
+          "twin": "3A",
+          "pair": 3,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.987
+        },
+        {
+          "twin": "3A",
+          "pair": 3,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0.992
+        },
+        {
+          "twin": "3A",
+          "pair": 3,
+          "id": "A",
+          "region": "West Africa",
+          "kit": "Ancestry",
+          "genetic.share": 0.01
+        },
+        {
+          "twin": "3A",
+          "pair": 3,
+          "id": "A",
+          "region": "West Africa",
+          "kit": "23andMe",
+          "genetic.share": 0.07
+        },
+        {
+          "twin": "3A",
+          "pair": 3,
+          "id": "A",
+          "region": "West Africa",
+          "kit": "MyHeritage",
+          "genetic.share": 0
+        },
+        {
+          "twin": "3B",
+          "pair": 3,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0.99
+        },
+        {
+          "twin": "3B",
+          "pair": 3,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.987
+        },
+        {
+          "twin": "3B",
+          "pair": 3,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0.981
+        },
+        {
+          "twin": "3B",
+          "pair": 3,
+          "id": "B",
+          "region": "West Africa",
+          "kit": "Ancestry",
+          "genetic.share": 0.01
+        },
+        {
+          "twin": "3B",
+          "pair": 3,
+          "id": "B",
+          "region": "West Africa",
+          "kit": "23andMe",
+          "genetic.share": 0.01
+        },
+        {
+          "twin": "3B",
+          "pair": 3,
+          "id": "B",
+          "region": "West Africa",
+          "kit": "MyHeritage",
+          "genetic.share": 0
+        },
+        {
+          "twin": "4A",
+          "pair": 4,
+          "id": "A",
+          "region": "West Africa",
+          "kit": "Ancestry",
+          "genetic.share": 0.6
+        },
+        {
+          "twin": "4A",
+          "pair": 4,
+          "id": "A",
+          "region": "West Africa",
+          "kit": "23andMe",
+          "genetic.share": 0.772
+        },
+        {
+          "twin": "4A",
+          "pair": 4,
+          "id": "A",
+          "region": "West Africa",
+          "kit": "MyHeritage",
+          "genetic.share": 0.692
+        },
+        {
+          "twin": "4A",
+          "pair": 4,
+          "id": "A",
+          "region": "Central Africa",
+          "kit": "Ancestry",
+          "genetic.share": 0.27
+        },
+        {
+          "twin": "4A",
+          "pair": 4,
+          "id": "A",
+          "region": "Central Africa",
+          "kit": "23andMe",
+          "genetic.share": 0.076
+        },
+        {
+          "twin": "4A",
+          "pair": 4,
+          "id": "A",
+          "region": "Central Africa",
+          "kit": "MyHeritage",
+          "genetic.share": 0.076
+        },
+        {
+          "twin": "4A",
+          "pair": 4,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0.12
+        },
+        {
+          "twin": "4A",
+          "pair": 4,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.125
+        },
+        {
+          "twin": "4A",
+          "pair": 4,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0.092
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "West Africa",
+          "kit": "Ancestry",
+          "genetic.share": 0.6
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "West Africa",
+          "kit": "23andMe",
+          "genetic.share": 0.768
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "West Africa",
+          "kit": "MyHeritage",
+          "genetic.share": 0.707
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "Central Africa",
+          "kit": "Ancestry",
+          "genetic.share": 0.27
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "Central Africa",
+          "kit": "23andMe",
+          "genetic.share": 0.08
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "Central Africa",
+          "kit": "MyHeritage",
+          "genetic.share": 0.068
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0.12
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.115
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0.088
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "East Asia",
+          "kit": "Ancestry",
+          "genetic.share": 0.01
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "East Asia",
+          "kit": "23andMe",
+          "genetic.share": 0.017
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "East Asia",
+          "kit": "MyHeritage",
+          "genetic.share": 0
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "SE Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "SE Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.009
+        },
+        {
+          "twin": "4B",
+          "pair": 4,
+          "id": "B",
+          "region": "SE Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0.094
+        },
+        {
+          "twin": "5A",
+          "pair": 5,
+          "id": "A",
+          "region": "East Asia",
+          "kit": "Ancestry",
+          "genetic.share": 1
+        },
+        {
+          "twin": "5A",
+          "pair": 5,
+          "id": "A",
+          "region": "East Asia",
+          "kit": "23andMe",
+          "genetic.share": 1
+        },
+        {
+          "twin": "5A",
+          "pair": 5,
+          "id": "A",
+          "region": "East Asia",
+          "kit": "MyHeritage",
+          "genetic.share": 0.978
+        },
+        {
+          "twin": "5B",
+          "pair": 5,
+          "id": "B",
+          "region": "East Asia",
+          "kit": "Ancestry",
+          "genetic.share": 1
+        },
+        {
+          "twin": "5B",
+          "pair": 5,
+          "id": "B",
+          "region": "East Asia",
+          "kit": "23andMe",
+          "genetic.share": 1
+        },
+        {
+          "twin": "5B",
+          "pair": 5,
+          "id": "B",
+          "region": "East Asia",
+          "kit": "MyHeritage",
+          "genetic.share": 0.973
+        },
+        {
+          "twin": "6A",
+          "pair": 6,
+          "id": "A",
+          "region": "West Africa",
+          "kit": "Ancestry",
+          "genetic.share": 0.62
+        },
+        {
+          "twin": "6A",
+          "pair": 6,
+          "id": "A",
+          "region": "West Africa",
+          "kit": "23andMe",
+          "genetic.share": 0.636
+        },
+        {
+          "twin": "6A",
+          "pair": 6,
+          "id": "A",
+          "region": "West Africa",
+          "kit": "MyHeritage",
+          "genetic.share": 0.61
+        },
+        {
+          "twin": "6A",
+          "pair": 6,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0.23
+        },
+        {
+          "twin": "6A",
+          "pair": 6,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.245
+        },
+        {
+          "twin": "6A",
+          "pair": 6,
+          "id": "A",
+          "region": "NW Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0.251
+        },
+        {
+          "twin": "6A",
+          "pair": 6,
+          "id": "A",
+          "region": "Central Africa",
+          "kit": "Ancestry",
+          "genetic.share": 0.12
+        },
+        {
+          "twin": "6A",
+          "pair": 6,
+          "id": "A",
+          "region": "Central Africa",
+          "kit": "23andMe",
+          "genetic.share": 0.1
+        },
+        {
+          "twin": "6A",
+          "pair": 6,
+          "id": "A",
+          "region": "Central Africa",
+          "kit": "MyHeritage",
+          "genetic.share": 0.11
+        },
+        {
+          "twin": "6A",
+          "pair": 6,
+          "id": "A",
+          "region": "East Asia",
+          "kit": "Ancestry",
+          "genetic.share": 0.01
+        },
+        {
+          "twin": "6A",
+          "pair": 6,
+          "id": "A",
+          "region": "East Asia",
+          "kit": "23andMe",
+          "genetic.share": 0.006
+        },
+        {
+          "twin": "6A",
+          "pair": 6,
+          "id": "A",
+          "region": "East Asia",
+          "kit": "MyHeritage",
+          "genetic.share": 0
+        },
+        {
+          "twin": "6B",
+          "pair": 6,
+          "id": "B",
+          "region": "West Africa",
+          "kit": "Ancestry",
+          "genetic.share": 0.62
+        },
+        {
+          "twin": "6B",
+          "pair": 6,
+          "id": "B",
+          "region": "West Africa",
+          "kit": "23andMe",
+          "genetic.share": 0.634
+        },
+        {
+          "twin": "6B",
+          "pair": 6,
+          "id": "B",
+          "region": "West Africa",
+          "kit": "MyHeritage",
+          "genetic.share": 0.624
+        },
+        {
+          "twin": "6B",
+          "pair": 6,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "Ancestry",
+          "genetic.share": 0.23
+        },
+        {
+          "twin": "6B",
+          "pair": 6,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "23andMe",
+          "genetic.share": 0.247
+        },
+        {
+          "twin": "6B",
+          "pair": 6,
+          "id": "B",
+          "region": "NW Europe",
+          "kit": "MyHeritage",
+          "genetic.share": 0.25
+        },
+        {
+          "twin": "6B",
+          "pair": 6,
+          "id": "B",
+          "region": "Central Africa",
+          "kit": "Ancestry",
+          "genetic.share": 0.13
+        },
+        {
+          "twin": "6B",
+          "pair": 6,
+          "id": "B",
+          "region": "Central Africa",
+          "kit": "23andMe",
+          "genetic.share": 0.1
+        },
+        {
+          "twin": "6B",
+          "pair": 6,
+          "id": "B",
+          "region": "Central Africa",
+          "kit": "MyHeritage",
+          "genetic.share": 0.089
+        },
+        {
+          "twin": "6B",
+          "pair": 6,
+          "id": "B",
+          "region": "East Asia",
+          "kit": "Ancestry",
+          "genetic.share": 0.01
+        },
+        {
+          "twin": "6B",
+          "pair": 6,
+          "id": "B",
+          "region": "East Asia",
+          "kit": "23andMe",
+          "genetic.share": 0.006
+        },
+        {
+          "twin": "6B",
+          "pair": 6,
+          "id": "B",
+          "region": "East Asia",
+          "kit": "MyHeritage",
+          "genetic.share": 0
+        }
+      ]
+    }
+  },
+  "embed_options": {
+    "renderer": "canvas",
+    "defaultStyle": true
+  }
+},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>This graph tells a story about how each kit is compared to one another in their genetic share. I faceted by twin so it’s easier to see exactly how each kit is different for each twin side by side. The tooltip also helps give extra information like more detailed genetic share for each part of the bar graph. For some kits, the genetic share is seen to be over the value 1 (twin 3A, 23andMe) which I don’t think should happen because the total genetic share should be 1. From this graph, we can tell the accuracy and compare differences across kits.</p>
+</section>
+</section>
+<section id="d" class="level2">
+<h2 class="anchored" data-anchor-id="d">d</h2>
+<p>story under each graph.</p>
+</section>
+</section>
+<section id="exercise-2" class="level1">
+<h1>Exercise 2</h1>
+<section id="email-marketing-challenge" class="level4">
+<h4 class="anchored" data-anchor-id="email-marketing-challenge">email marketing challenge</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>challenge_data <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">"https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-13.json"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This data shows the completion rates for an email marketing campaign and also the response rate. The problem is that the response rate is low and the completion rate is high, but the completion rate comes from the total people who responded, so it shouldn’t be more than the response rate. There should be a new variable that calculates the completion rate with respect to the response rate. So how many people actually completed the survey, under the amount of people that actually responded.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>challenge_data <span class="ot">&lt;-</span> challenge_data <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(Date, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"quarter"</span>, <span class="st">"year"</span>), <span class="at">sep =</span> <span class="st">"-"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">quarter =</span> <span class="fu">parse_number</span>(quarter),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">parse_number</span>(year),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_str =</span> <span class="fu">paste0</span>(year, <span class="st">"-"</span>, <span class="dv">3</span> <span class="sc">*</span> quarter <span class="sc">-</span> <span class="dv">2</span>, <span class="st">"-01"</span> ),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">ymd</span>(date_str))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>challenge_data <span class="ot">&lt;-</span> challenge_data <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">TrueCompletionRate =</span> <span class="st">`</span><span class="at">Completion Rate</span><span class="st">`</span> <span class="sc">*</span> <span class="st">`</span><span class="at">Response Rate</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>responseplot <span class="ot">&lt;-</span> <span class="fu">vl_chart</span>(challenge_data) <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_mark_bar</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_x</span>(<span class="st">"date:T"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_y</span>(<span class="st">"Response Rate:Q"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_color</span>(<span class="at">value =</span> <span class="st">"blue"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_tooltip_array</span>(<span class="fu">list</span>(<span class="st">"Response Rate"</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>completionplot <span class="ot">&lt;-</span> <span class="fu">vl_chart</span>(challenge_data) <span class="sc">|&gt;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_mark_line</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_x</span>(<span class="st">"date:T"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_y</span>(<span class="st">"TrueCompletionRate:Q"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_color</span>(<span class="at">value =</span> <span class="st">"red"</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>completionpoint <span class="ot">&lt;-</span> <span class="fu">vl_chart</span>(challenge_data) <span class="sc">|&gt;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_mark_point</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_x</span>(<span class="st">"date:T"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_y</span>(<span class="st">"TrueCompletionRate:Q"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_color</span>(<span class="at">value =</span> <span class="st">"red"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_tooltip_array</span>(<span class="fu">list</span>(<span class="st">"TrueCompletionRate"</span>, <span class="st">"Completion Rate"</span>, <span class="st">"Response Rate"</span>))</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="fu">vl_layer</span>(responseplot, completionplot, completionpoint) <span class="sc">|&gt;</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_add_properties</span>(<span class="at">title =</span> <span class="st">"Completion Rates in Proportion to Response Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="htmlwidget-fc4e8c68c7f5019d308f" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fc4e8c68c7f5019d308f">{"x":{
+  "chart_spec": {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "layer": [
+      {
+        "data": {
+          "values": [
+            {
+              "quarter": 1,
+              "year": 2017,
+              "Completion Rate": 0.91,
+              "Response Rate": 0.023,
+              "date_str": "2017-1-01",
+              "date": "2017-01-01",
+              "TrueCompletionRate": 0.02093
+            },
+            {
+              "quarter": 2,
+              "year": 2017,
+              "Completion Rate": 0.93,
+              "Response Rate": 0.018,
+              "date_str": "2017-4-01",
+              "date": "2017-04-01",
+              "TrueCompletionRate": 0.01674
+            },
+            {
+              "quarter": 3,
+              "year": 2017,
+              "Completion Rate": 0.91,
+              "Response Rate": 0.028,
+              "date_str": "2017-7-01",
+              "date": "2017-07-01",
+              "TrueCompletionRate": 0.02548
+            },
+            {
+              "quarter": 4,
+              "year": 2017,
+              "Completion Rate": 0.89,
+              "Response Rate": 0.023,
+              "date_str": "2017-10-01",
+              "date": "2017-10-01",
+              "TrueCompletionRate": 0.02047
+            },
+            {
+              "quarter": 1,
+              "year": 2018,
+              "Completion Rate": 0.84,
+              "Response Rate": 0.034,
+              "date_str": "2018-1-01",
+              "date": "2018-01-01",
+              "TrueCompletionRate": 0.02856
+            },
+            {
+              "quarter": 2,
+              "year": 2018,
+              "Completion Rate": 0.88,
+              "Response Rate": 0.027,
+              "date_str": "2018-4-01",
+              "date": "2018-04-01",
+              "TrueCompletionRate": 0.02376
+            },
+            {
+              "quarter": 3,
+              "year": 2018,
+              "Completion Rate": 0.91,
+              "Response Rate": 0.026,
+              "date_str": "2018-7-01",
+              "date": "2018-07-01",
+              "TrueCompletionRate": 0.02366
+            },
+            {
+              "quarter": 4,
+              "year": 2018,
+              "Completion Rate": 0.87,
+              "Response Rate": 0.039,
+              "date_str": "2018-10-01",
+              "date": "2018-10-01",
+              "TrueCompletionRate": 0.03393
+            },
+            {
+              "quarter": 1,
+              "year": 2019,
+              "Completion Rate": 0.83,
+              "Response Rate": 0.028,
+              "date_str": "2019-1-01",
+              "date": "2019-01-01",
+              "TrueCompletionRate": 0.02324
+            }
+          ]
+        },
+        "mark": {
+          "type": "bar"
+        },
+        "encoding": {
+          "x": {
+            "field": "date",
+            "type": "temporal"
+          },
+          "y": {
+            "field": "Response Rate",
+            "type": "quantitative"
+          },
+          "color": {
+            "value": "blue"
+          },
+          "tooltip": {
+            "field": "Response Rate",
+            "type": "quantitative"
+          }
+        }
+      },
+      {
+        "data": {
+          "values": [
+            {
+              "quarter": 1,
+              "year": 2017,
+              "Completion Rate": 0.91,
+              "Response Rate": 0.023,
+              "date_str": "2017-1-01",
+              "date": "2017-01-01",
+              "TrueCompletionRate": 0.02093
+            },
+            {
+              "quarter": 2,
+              "year": 2017,
+              "Completion Rate": 0.93,
+              "Response Rate": 0.018,
+              "date_str": "2017-4-01",
+              "date": "2017-04-01",
+              "TrueCompletionRate": 0.01674
+            },
+            {
+              "quarter": 3,
+              "year": 2017,
+              "Completion Rate": 0.91,
+              "Response Rate": 0.028,
+              "date_str": "2017-7-01",
+              "date": "2017-07-01",
+              "TrueCompletionRate": 0.02548
+            },
+            {
+              "quarter": 4,
+              "year": 2017,
+              "Completion Rate": 0.89,
+              "Response Rate": 0.023,
+              "date_str": "2017-10-01",
+              "date": "2017-10-01",
+              "TrueCompletionRate": 0.02047
+            },
+            {
+              "quarter": 1,
+              "year": 2018,
+              "Completion Rate": 0.84,
+              "Response Rate": 0.034,
+              "date_str": "2018-1-01",
+              "date": "2018-01-01",
+              "TrueCompletionRate": 0.02856
+            },
+            {
+              "quarter": 2,
+              "year": 2018,
+              "Completion Rate": 0.88,
+              "Response Rate": 0.027,
+              "date_str": "2018-4-01",
+              "date": "2018-04-01",
+              "TrueCompletionRate": 0.02376
+            },
+            {
+              "quarter": 3,
+              "year": 2018,
+              "Completion Rate": 0.91,
+              "Response Rate": 0.026,
+              "date_str": "2018-7-01",
+              "date": "2018-07-01",
+              "TrueCompletionRate": 0.02366
+            },
+            {
+              "quarter": 4,
+              "year": 2018,
+              "Completion Rate": 0.87,
+              "Response Rate": 0.039,
+              "date_str": "2018-10-01",
+              "date": "2018-10-01",
+              "TrueCompletionRate": 0.03393
+            },
+            {
+              "quarter": 1,
+              "year": 2019,
+              "Completion Rate": 0.83,
+              "Response Rate": 0.028,
+              "date_str": "2019-1-01",
+              "date": "2019-01-01",
+              "TrueCompletionRate": 0.02324
+            }
+          ]
+        },
+        "mark": {
+          "type": "line"
+        },
+        "encoding": {
+          "x": {
+            "field": "date",
+            "type": "temporal"
+          },
+          "y": {
+            "field": "TrueCompletionRate",
+            "type": "quantitative"
+          },
+          "color": {
+            "value": "red"
+          }
+        }
+      },
+      {
+        "data": {
+          "values": [
+            {
+              "quarter": 1,
+              "year": 2017,
+              "Completion Rate": 0.91,
+              "Response Rate": 0.023,
+              "date_str": "2017-1-01",
+              "date": "2017-01-01",
+              "TrueCompletionRate": 0.02093
+            },
+            {
+              "quarter": 2,
+              "year": 2017,
+              "Completion Rate": 0.93,
+              "Response Rate": 0.018,
+              "date_str": "2017-4-01",
+              "date": "2017-04-01",
+              "TrueCompletionRate": 0.01674
+            },
+            {
+              "quarter": 3,
+              "year": 2017,
+              "Completion Rate": 0.91,
+              "Response Rate": 0.028,
+              "date_str": "2017-7-01",
+              "date": "2017-07-01",
+              "TrueCompletionRate": 0.02548
+            },
+            {
+              "quarter": 4,
+              "year": 2017,
+              "Completion Rate": 0.89,
+              "Response Rate": 0.023,
+              "date_str": "2017-10-01",
+              "date": "2017-10-01",
+              "TrueCompletionRate": 0.02047
+            },
+            {
+              "quarter": 1,
+              "year": 2018,
+              "Completion Rate": 0.84,
+              "Response Rate": 0.034,
+              "date_str": "2018-1-01",
+              "date": "2018-01-01",
+              "TrueCompletionRate": 0.02856
+            },
+            {
+              "quarter": 2,
+              "year": 2018,
+              "Completion Rate": 0.88,
+              "Response Rate": 0.027,
+              "date_str": "2018-4-01",
+              "date": "2018-04-01",
+              "TrueCompletionRate": 0.02376
+            },
+            {
+              "quarter": 3,
+              "year": 2018,
+              "Completion Rate": 0.91,
+              "Response Rate": 0.026,
+              "date_str": "2018-7-01",
+              "date": "2018-07-01",
+              "TrueCompletionRate": 0.02366
+            },
+            {
+              "quarter": 4,
+              "year": 2018,
+              "Completion Rate": 0.87,
+              "Response Rate": 0.039,
+              "date_str": "2018-10-01",
+              "date": "2018-10-01",
+              "TrueCompletionRate": 0.03393
+            },
+            {
+              "quarter": 1,
+              "year": 2019,
+              "Completion Rate": 0.83,
+              "Response Rate": 0.028,
+              "date_str": "2019-1-01",
+              "date": "2019-01-01",
+              "TrueCompletionRate": 0.02324
+            }
+          ]
+        },
+        "mark": {
+          "type": "point"
+        },
+        "encoding": {
+          "x": {
+            "field": "date",
+            "type": "temporal"
+          },
+          "y": {
+            "field": "TrueCompletionRate",
+            "type": "quantitative"
+          },
+          "color": {
+            "value": "red"
+          },
+          "tooltip": [
+            {
+              "field": "TrueCompletionRate",
+              "type": "quantitative"
+            },
+            {
+              "field": "Completion Rate",
+              "type": "quantitative"
+            },
+            {
+              "field": "Response Rate",
+              "type": "quantitative"
+            }
+          ]
+        }
+      }
+    ],
+    "title": "Completion Rates in Proportion to Response Rate"
+  },
+  "embed_options": {
+    "renderer": "canvas",
+    "defaultStyle": true
+  }
+},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+</section>
+<section id="exercise-3" class="level1">
+<h1>Exercise 3</h1>
+<section id="a-1" class="level2">
+<h2 class="anchored" data-anchor-id="a-1">a</h2>
+<pre><code>##Idk why this isn't working, but i can access the file through pulling it through my laptop.
+Tanzania_Data &lt;- read_csv("https://github.com/Felicia-susanto/data304/raw/refs/heads/main/data/Tazania%20Data.xlsx")</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#just so the code can run from other devices</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>tanzania <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Survey_Year =</span> <span class="fu">c</span>(<span class="dv">1991</span>, <span class="dv">1992</span>, <span class="dv">1996</span>, <span class="dv">1999</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2016</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Fertility_Rate =</span> <span class="fu">c</span>(<span class="fl">6.2</span>, <span class="fl">6.2</span>, <span class="fl">5.8</span>, <span class="fl">5.6</span>, <span class="fl">5.7</span>, <span class="fl">5.7</span>, <span class="fl">5.4</span>, <span class="fl">5.2</span>, <span class="fl">5.2</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Contraception_Use =</span> <span class="fu">c</span>(<span class="fl">0.059</span>, <span class="fl">0.059</span>, <span class="fl">0.117</span>, <span class="fl">0.156</span>, <span class="fl">0.176</span>, <span class="fl">0.176</span>, <span class="fl">0.236</span>, <span class="fl">0.384</span>, <span class="fl">0.384</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Unmet_FP =</span> <span class="fu">c</span>(<span class="fl">0.278</span>, <span class="fl">0.278</span>, <span class="fl">0.26</span>, <span class="fl">0.223</span>, <span class="fl">0.243</span>, <span class="fl">0.243</span>, <span class="fl">0.223</span>, <span class="fl">0.221</span>, <span class="fl">0.221</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For surveys that were conducted in 2 years, I duplicated their values and put both years in with the same value. I also changed all the percentages to be proportions for now.</p>
+</section>
+<section id="b-1" class="level2">
+<h2 class="anchored" data-anchor-id="b-1">b</h2>
+<pre><code>FR &lt;- vl_chart(Tazania_Data) |&gt;
+  vl_mark_line() |&gt;
+  vl_encode_x("Survey_Year:O") |&gt;
+  vl_encode_y("Fertility_Rate:Q") |&gt;
+  vl_encode_color(value = "blue")|&gt;
+  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))
+
+Contraception &lt;- vl_chart(Tazania_Data) |&gt;
+  vl_mark_line() |&gt;
+  vl_encode_x("Survey_Year:O") |&gt;
+  vl_encode_y("Contraception_Use:Q") |&gt;
+  vl_encode_color(value = "red")|&gt;
+  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))
+
+FP &lt;- vl_chart(Tazania_Data) |&gt;
+  vl_mark_line() |&gt;
+  vl_encode_x("Survey_Year:O") |&gt;
+  vl_encode_y("Unmet_FP:Q") |&gt;
+  vl_encode_color(value = "orange")|&gt;
+  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))
+
+FR2 &lt;- vl_chart(Tazania_Data) |&gt;
+  vl_mark_point() |&gt;
+  vl_encode_x("Survey_Year:O") |&gt;
+  vl_encode_y("Fertility_Rate:Q") |&gt;
+  vl_encode_color(value = "blue")|&gt;
+  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))
+
+Contraception2 &lt;- vl_chart(Tazania_Data) |&gt;
+  vl_mark_point() |&gt;
+  vl_encode_x("Survey_Year:O") |&gt;
+  vl_encode_y("Contraception_Use:Q") |&gt;
+  vl_encode_color(value = "red")|&gt;
+  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))
+
+FP2 &lt;- vl_chart(Tazania_Data) |&gt;
+  vl_mark_point() |&gt;
+  vl_encode_x("Survey_Year:O") |&gt;
+  vl_encode_y("Unmet_FP:Q") |&gt;
+  vl_encode_color(value = "orange")|&gt;
+  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))
+
+vl_layer(FR, Contraception, FP, FR2, Contraception2, FP2) |&gt;
+  vl_add_properties(title = "Fertility Rate, Contraception, and Family Planning in Tanzania")</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This gives a legend for color</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Tanzania_Data_long <span class="ot">&lt;-</span> tanzania<span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Fertility_Rate, Contraception_Use, Unmet_FP), </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Category"</span>, </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Value"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">vl_chart</span>(Tanzania_Data_long) <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_mark_line</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_x</span>(<span class="st">"Survey_Year:O"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_y</span>(<span class="st">"Value:Q"</span>, <span class="at">title =</span> <span class="st">"Rate"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_color</span>(<span class="at">field =</span> <span class="st">"Category:N"</span>, </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">title =</span> <span class="st">"Indicator"</span>, </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                  <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">domain =</span> <span class="fu">c</span>(<span class="st">"Fertility_Rate"</span>, <span class="st">"Unmet_FP"</span>, <span class="st">"Contraception_Use"</span>), </span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>                               <span class="at">range =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"orange"</span>, <span class="st">"red"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_tooltip_array</span>(<span class="fu">list</span>(<span class="st">"Survey_Year"</span>, <span class="st">"Category"</span>, <span class="st">"Value"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_add_properties</span>(<span class="at">title =</span> <span class="st">"Women's Fertility Rate, Contraception, and Family Planning in Tanzania"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="htmlwidget-6b142cc71f5be33d44cc" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6b142cc71f5be33d44cc">{"x":{
+  "chart_spec": {
+    "data": {
+      "values": [
+        {
+          "Survey_Year": 1991,
+          "Category": "Fertility_Rate",
+          "Value": 6.2
+        },
+        {
+          "Survey_Year": 1991,
+          "Category": "Contraception_Use",
+          "Value": 0.059
+        },
+        {
+          "Survey_Year": 1991,
+          "Category": "Unmet_FP",
+          "Value": 0.278
+        },
+        {
+          "Survey_Year": 1992,
+          "Category": "Fertility_Rate",
+          "Value": 6.2
+        },
+        {
+          "Survey_Year": 1992,
+          "Category": "Contraception_Use",
+          "Value": 0.059
+        },
+        {
+          "Survey_Year": 1992,
+          "Category": "Unmet_FP",
+          "Value": 0.278
+        },
+        {
+          "Survey_Year": 1996,
+          "Category": "Fertility_Rate",
+          "Value": 5.8
+        },
+        {
+          "Survey_Year": 1996,
+          "Category": "Contraception_Use",
+          "Value": 0.117
+        },
+        {
+          "Survey_Year": 1996,
+          "Category": "Unmet_FP",
+          "Value": 0.26
+        },
+        {
+          "Survey_Year": 1999,
+          "Category": "Fertility_Rate",
+          "Value": 5.6
+        },
+        {
+          "Survey_Year": 1999,
+          "Category": "Contraception_Use",
+          "Value": 0.156
+        },
+        {
+          "Survey_Year": 1999,
+          "Category": "Unmet_FP",
+          "Value": 0.223
+        },
+        {
+          "Survey_Year": 2004,
+          "Category": "Fertility_Rate",
+          "Value": 5.7
+        },
+        {
+          "Survey_Year": 2004,
+          "Category": "Contraception_Use",
+          "Value": 0.176
+        },
+        {
+          "Survey_Year": 2004,
+          "Category": "Unmet_FP",
+          "Value": 0.243
+        },
+        {
+          "Survey_Year": 2005,
+          "Category": "Fertility_Rate",
+          "Value": 5.7
+        },
+        {
+          "Survey_Year": 2005,
+          "Category": "Contraception_Use",
+          "Value": 0.176
+        },
+        {
+          "Survey_Year": 2005,
+          "Category": "Unmet_FP",
+          "Value": 0.243
+        },
+        {
+          "Survey_Year": 2010,
+          "Category": "Fertility_Rate",
+          "Value": 5.4
+        },
+        {
+          "Survey_Year": 2010,
+          "Category": "Contraception_Use",
+          "Value": 0.236
+        },
+        {
+          "Survey_Year": 2010,
+          "Category": "Unmet_FP",
+          "Value": 0.223
+        },
+        {
+          "Survey_Year": 2015,
+          "Category": "Fertility_Rate",
+          "Value": 5.2
+        },
+        {
+          "Survey_Year": 2015,
+          "Category": "Contraception_Use",
+          "Value": 0.384
+        },
+        {
+          "Survey_Year": 2015,
+          "Category": "Unmet_FP",
+          "Value": 0.221
+        },
+        {
+          "Survey_Year": 2016,
+          "Category": "Fertility_Rate",
+          "Value": 5.2
+        },
+        {
+          "Survey_Year": 2016,
+          "Category": "Contraception_Use",
+          "Value": 0.384
+        },
+        {
+          "Survey_Year": 2016,
+          "Category": "Unmet_FP",
+          "Value": 0.221
+        }
+      ]
+    },
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "mark": {
+      "type": "line"
+    },
+    "encoding": {
+      "x": {
+        "field": "Survey_Year",
+        "type": "ordinal"
+      },
+      "y": {
+        "field": "Value",
+        "title": "Rate",
+        "type": "quantitative"
+      },
+      "color": {
+        "field": "Category",
+        "scale": {
+          "domain": ["Fertility_Rate", "Unmet_FP", "Contraception_Use"],
+          "range": ["blue", "orange", "red"]
+        },
+        "title": "Indicator",
+        "type": "nominal"
+      },
+      "tooltip": [
+        {
+          "field": "Survey_Year",
+          "type": "quantitative"
+        },
+        {
+          "field": "Category",
+          "type": "nominal"
+        },
+        {
+          "field": "Value",
+          "type": "quantitative"
+        }
+      ]
+    },
+    "title": "Women's Fertility Rate, Contraception, and Family Planning in Tanzania"
+  },
+  "embed_options": {
+    "renderer": "canvas",
+    "defaultStyle": true
+  }
+},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="c-1" class="level2">
+<h2 class="anchored" data-anchor-id="c-1">c</h2>
+<p>This graph tells a story about women’s fertility rates, contraception use, and unmet family planning needs in Tanzania over time.</p>
+<p>Fertility Rate (Blue Line): The fertility rate has declined steadily from around 6 children per woman in the early 1990s to around 5 in the 2010s. This suggests improvements in reproductive health education, economic factors, and possibly access to family planning services.</p>
+<p>Contraception Use (Red Line): The use of contraception has gradually increased over time, though it looks like it remains relatively low compared to fertility rates, we must remember that it is a proportion, so it only goes up to 1. This could indicate increased awareness and availability of contraceptive methods.</p>
+<p>Unmet Family Planning Needs (Orange Line): The unmet need for family planning appears relatively low and stable over the years. If this line is declining, it suggests that more women are gaining access to the contraception they need. However, if it remains constant or rises, it indicates persistent barriers.</p>
+<p>The declining fertility rate is possibly influenced by increasing contraception use and improved family planning services. However, unmet family planning is still relatively stable, meaning there might still be cultural, economic, or logistical barriers limiting access to some families.</p>
+</section>
+</section>
+<section id="exercise-4" class="level1">
+<h1>Exercise 4</h1>
+</section>
+<section id="exercise-5" class="level1">
+<h1>Exercise 5</h1>
+<ul>
+<li><p>an encoding channel other than x or y: used color for most graphs (comparing twins, kits, challenge, tanzania )</p></li>
+<li><p>layers: Used in exercise 2 to graph completion rates and response rates</p></li>
+<li><p>facets: used in comparing kits and comparing twins</p></li>
+<li><p>concatenation or repeat:</p></li>
+<li><p>non-default settings for a channel’s scale or guide: used tableau10 for color in comparing twins, sorted the twin field as well under vl_encode_x, mutate date for challenge.</p></li>
+<li><p>tooltips: used in most of my graphics: exercise 2, exercise 3</p></li>
+<li><p>another kind of interaction (panning/zooming, brushing, sliders, etc.):</p></li>
+</ul>
+</section>
+<section id="exercise-6" class="level1">
+<h1>Exercise 6</h1>
+<!-- -->
+
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Final project Data 304"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "felicia susanto"</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r libraries}</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="in">library(vegawidget)</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="in">library(readr)</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="in">library(dplyr)</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="in">library(vegalite)</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="in">library(lubridate)</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="in">library(vegabrite)</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyr)</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="in">library(jsonlite)</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="in">library(readxl)</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 1</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## a</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true </span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "https://calvin-data304.netlify.app/data/twins-genetics-wide.json"</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="st">  "mark": {"type": "bar"},</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": "Comparing Twins Genetic Similarity According to Genealogy Services",</span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 300,</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 300,</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a><span class="st">  "encoding": {</span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a><span class="st">    "x": {"field": "id", "type": "nominal", "title": ""},</span></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a><span class="st">    "xOffset": {"field": "region"},</span></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="st">    "color": {"field": "region", "title": "Region of Ancestry"},</span></span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a><span class="st">    "y": {</span></span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "Ancestry",</span></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "quantitative",</span></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Ancestry.com Score"</span></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a><span class="st">    "facet": {"field": "pair", "columns": 3, "title": "Pairs of Twins"}</span></span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a><span class="st">'</span><span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>This graph was taken from the homework 4 gallery and something I like about it is that I can see all the twins compared to each other in one graph. I do have to slide around a bit, but if we make the graphs smaller then they can fit into a smaller screen without needing to scroll as much. I also like the use of color which distinguishes each region so we know how each region differs for each set of twins. It also has labels on the x axis that shows individual people (so twin a and twin b for each pair of twins). This graph also allows me to compare each region, for each twin easily because bar graphs are one of the easier graphs to interpret and this graph shows all the bars at once.</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## b</span></span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true </span></span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": "DNA Kits Similarities/Differences",</span></span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json",</span></span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a><span class="st">    "format": {"type": "json"}</span></span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 400,</span></span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 450,</span></span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a><span class="st">  "mark": "boxplot",</span></span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a><span class="st">  "encoding": {</span></span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a><span class="st">    "x": {"field": "kit", "type": "nominal", "title": "DNA Kit"},</span></span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a><span class="st">    "y": {</span></span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a><span class="st">      "field": "genetic share",</span></span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a><span class="st">      "type": "quantitative",</span></span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a><span class="st">      "title": "Genetic Share"</span></span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a><span class="st">    "color": {"field": "kit", "type": "nominal", "title": "DNA Kit"}</span></span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a><span class="st">'</span><span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a>This graph was taken from the homework 4 gallery, and something I don't like about it is the use of color here. I think the use of color is redundant because each boxplot is already labeled and represents different DNA kits, so the use of different colors isn't really helpful. In addition, there are only 3 boxplots, so we really don't need the help of color to distinguish the plots. It honestly isn't a big deal, and the use of color would not make any difference, but that is one thing I noticed immediately. I also don't think this graphic is good at immediately telling a story because I don't understand what the plots are trying to say. What does the genetic share (y-axis) represent here, and what does it have to do with comparing the kits? Is it the average genetic share each kit finds? Or is it the genetic share each kit has compared to the total genetic share?</span>
+<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a><span class="fu">## c</span></span>
+<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a><span class="fu">#### comparing twins</span></span>
+<span id="cb15-90"><a href="#cb15-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a>genetics_wide <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://calvin-data304.netlify.app/data/twins-genetics-wide.csv"</span>)</span>
+<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a>genetics_long <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://calvin-data304.netlify.app/data/twins-genetics-long.csv"</span>)</span>
+<span id="cb15-96"><a href="#cb15-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true </span></span>
+<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a><span class="in">vl_chart() |&gt;</span></span>
+<span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_mark_bar() |&gt;</span></span>
+<span id="cb15-102"><a href="#cb15-102" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_add_properties(title ="Comparing Twins Genetic Shares") |&gt;</span></span>
+<span id="cb15-103"><a href="#cb15-103" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_x(field = "twin:N", title = "Twin", sort = c(</span></span>
+<span id="cb15-104"><a href="#cb15-104" aria-hidden="true" tabindex="-1"></a><span class="in">        "1A", "1B", "2A", "2B", "3A", "3B",</span></span>
+<span id="cb15-105"><a href="#cb15-105" aria-hidden="true" tabindex="-1"></a><span class="in">        "4A", "4B", "5A", "5B", "6A", "6B"</span></span>
+<span id="cb15-106"><a href="#cb15-106" aria-hidden="true" tabindex="-1"></a><span class="in">  )) |&gt;</span></span>
+<span id="cb15-107"><a href="#cb15-107" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_y(field = "genetic share:Q", title = "Genetic Share") |&gt;</span></span>
+<span id="cb15-108"><a href="#cb15-108" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_facet(field = "region", type = "nominal", columns = 2) |&gt;</span></span>
+<span id="cb15-109"><a href="#cb15-109" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_color("pair:N", title = "Pairs", scale = list(scheme = "tableau10")) |&gt;</span></span>
+<span id="cb15-110"><a href="#cb15-110" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_add_data(genetics_long)</span></span>
+<span id="cb15-111"><a href="#cb15-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-112"><a href="#cb15-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-113"><a href="#cb15-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-116"><a href="#cb15-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-117"><a href="#cb15-117" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true </span></span>
+<span id="cb15-118"><a href="#cb15-118" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb15-119"><a href="#cb15-119" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb15-120"><a href="#cb15-120" aria-hidden="true" tabindex="-1"></a><span class="st">  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",</span></span>
+<span id="cb15-121"><a href="#cb15-121" aria-hidden="true" tabindex="-1"></a><span class="st">  "data": {</span></span>
+<span id="cb15-122"><a href="#cb15-122" aria-hidden="true" tabindex="-1"></a><span class="st">    "url": "https://calvin-data304.netlify.app/data/twins-genetics-long.json"</span></span>
+<span id="cb15-123"><a href="#cb15-123" aria-hidden="true" tabindex="-1"></a><span class="st">  },</span></span>
+<span id="cb15-124"><a href="#cb15-124" aria-hidden="true" tabindex="-1"></a><span class="st">  "width": 600,</span></span>
+<span id="cb15-125"><a href="#cb15-125" aria-hidden="true" tabindex="-1"></a><span class="st">  "height": 900,</span></span>
+<span id="cb15-126"><a href="#cb15-126" aria-hidden="true" tabindex="-1"></a><span class="st">  "title": "Twins genetic shares similarities/differences",</span></span>
+<span id="cb15-127"><a href="#cb15-127" aria-hidden="true" tabindex="-1"></a><span class="st">  "facet": {"field": "region", "type": "nominal", "title": "Region"},</span></span>
+<span id="cb15-128"><a href="#cb15-128" aria-hidden="true" tabindex="-1"></a><span class="st">  "spec": {</span></span>
+<span id="cb15-129"><a href="#cb15-129" aria-hidden="true" tabindex="-1"></a><span class="st">    "mark": "bar",</span></span>
+<span id="cb15-130"><a href="#cb15-130" aria-hidden="true" tabindex="-1"></a><span class="st">    "encoding": {</span></span>
+<span id="cb15-131"><a href="#cb15-131" aria-hidden="true" tabindex="-1"></a><span class="st">      "x": {</span></span>
+<span id="cb15-132"><a href="#cb15-132" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "twin",</span></span>
+<span id="cb15-133"><a href="#cb15-133" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "nominal",</span></span>
+<span id="cb15-134"><a href="#cb15-134" aria-hidden="true" tabindex="-1"></a><span class="st">        "title": "Twin",</span></span>
+<span id="cb15-135"><a href="#cb15-135" aria-hidden="true" tabindex="-1"></a><span class="st">        "sort": [</span></span>
+<span id="cb15-136"><a href="#cb15-136" aria-hidden="true" tabindex="-1"></a><span class="st">          "1A",</span></span>
+<span id="cb15-137"><a href="#cb15-137" aria-hidden="true" tabindex="-1"></a><span class="st">          "1B",</span></span>
+<span id="cb15-138"><a href="#cb15-138" aria-hidden="true" tabindex="-1"></a><span class="st">          "2A",</span></span>
+<span id="cb15-139"><a href="#cb15-139" aria-hidden="true" tabindex="-1"></a><span class="st">          "2B",</span></span>
+<span id="cb15-140"><a href="#cb15-140" aria-hidden="true" tabindex="-1"></a><span class="st">          "3A",</span></span>
+<span id="cb15-141"><a href="#cb15-141" aria-hidden="true" tabindex="-1"></a><span class="st">          "3B",</span></span>
+<span id="cb15-142"><a href="#cb15-142" aria-hidden="true" tabindex="-1"></a><span class="st">          "4A",</span></span>
+<span id="cb15-143"><a href="#cb15-143" aria-hidden="true" tabindex="-1"></a><span class="st">          "4B",</span></span>
+<span id="cb15-144"><a href="#cb15-144" aria-hidden="true" tabindex="-1"></a><span class="st">          "5A",</span></span>
+<span id="cb15-145"><a href="#cb15-145" aria-hidden="true" tabindex="-1"></a><span class="st">          "5B",</span></span>
+<span id="cb15-146"><a href="#cb15-146" aria-hidden="true" tabindex="-1"></a><span class="st">          "6A",</span></span>
+<span id="cb15-147"><a href="#cb15-147" aria-hidden="true" tabindex="-1"></a><span class="st">          "6B"</span></span>
+<span id="cb15-148"><a href="#cb15-148" aria-hidden="true" tabindex="-1"></a><span class="st">        ]</span></span>
+<span id="cb15-149"><a href="#cb15-149" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
+<span id="cb15-150"><a href="#cb15-150" aria-hidden="true" tabindex="-1"></a><span class="st">      "y": {</span></span>
+<span id="cb15-151"><a href="#cb15-151" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "genetic share",</span></span>
+<span id="cb15-152"><a href="#cb15-152" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "quantitative",</span></span>
+<span id="cb15-153"><a href="#cb15-153" aria-hidden="true" tabindex="-1"></a><span class="st">        "title": "Genetic Share"</span></span>
+<span id="cb15-154"><a href="#cb15-154" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
+<span id="cb15-155"><a href="#cb15-155" aria-hidden="true" tabindex="-1"></a><span class="st">      "color": {</span></span>
+<span id="cb15-156"><a href="#cb15-156" aria-hidden="true" tabindex="-1"></a><span class="st">        "field": "pair",</span></span>
+<span id="cb15-157"><a href="#cb15-157" aria-hidden="true" tabindex="-1"></a><span class="st">        "type": "nominal",</span></span>
+<span id="cb15-158"><a href="#cb15-158" aria-hidden="true" tabindex="-1"></a><span class="st">        "title": "Pairs",</span></span>
+<span id="cb15-159"><a href="#cb15-159" aria-hidden="true" tabindex="-1"></a><span class="st">        "scale": {"scheme": "tableau10"}</span></span>
+<span id="cb15-160"><a href="#cb15-160" aria-hidden="true" tabindex="-1"></a><span class="st">      },</span></span>
+<span id="cb15-161"><a href="#cb15-161" aria-hidden="true" tabindex="-1"></a><span class="st">      "tooltip": [</span></span>
+<span id="cb15-162"><a href="#cb15-162" aria-hidden="true" tabindex="-1"></a><span class="st">        {"field": "genetic share", "type": "quantitative", "title": "Genetic Share"},</span></span>
+<span id="cb15-163"><a href="#cb15-163" aria-hidden="true" tabindex="-1"></a><span class="st">        {"field": "kit", "type": "nominal", "title": "Kit"}</span></span>
+<span id="cb15-164"><a href="#cb15-164" aria-hidden="true" tabindex="-1"></a><span class="st">      ]</span></span>
+<span id="cb15-165"><a href="#cb15-165" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb15-166"><a href="#cb15-166" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb15-167"><a href="#cb15-167" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb15-168"><a href="#cb15-168" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="sc">|&gt;</span> <span class="fu">as_vegaspec</span>()</span>
+<span id="cb15-169"><a href="#cb15-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-170"><a href="#cb15-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-171"><a href="#cb15-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-172"><a href="#cb15-172" aria-hidden="true" tabindex="-1"></a>This graph tells the story of genetic sharing among twins, allowing us to compare these shares between each twin pair. The tooltip provides valuable insight by displaying the kit used and the corresponding genetic share it contributes to each twin pair. It also shows the overall genetic shares between the twins. The stacked bar chart is helpful in conveying this information, and the use of distinct colors and grouped bars facilitates easy comparison of twins in each pair. Moreover, the facet by region feature enables us to observe the regional genetic contributions, which, ideally, should be similar for each twin individual when compared to their twin.</span>
+<span id="cb15-173"><a href="#cb15-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-174"><a href="#cb15-174" aria-hidden="true" tabindex="-1"></a><span class="fu">#### comparing kits</span></span>
+<span id="cb15-175"><a href="#cb15-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-178"><a href="#cb15-178" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-179"><a href="#cb15-179" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true </span></span>
+<span id="cb15-180"><a href="#cb15-180" aria-hidden="true" tabindex="-1"></a><span class="fu">vl_chart</span>(<span class="at">width =</span> <span class="dv">300</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-181"><a href="#cb15-181" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_mark_bar</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb15-182"><a href="#cb15-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_x</span>(<span class="st">"kit:N"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-183"><a href="#cb15-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_y</span>(<span class="st">"genetic.share:Q"</span>, <span class="at">title =</span> <span class="st">"genetic share"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-184"><a href="#cb15-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_color</span>(<span class="st">"pair:N"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-185"><a href="#cb15-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_xOffset</span>(<span class="st">"twin:O"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-186"><a href="#cb15-186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_facet</span>(<span class="st">"pair:N"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-187"><a href="#cb15-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_tooltip_array</span>(<span class="fu">list</span>(<span class="st">"twin"</span>, <span class="st">"genetic.share"</span>, <span class="st">"region"</span>, <span class="st">"kit"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-188"><a href="#cb15-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_add_properties</span>(<span class="at">title =</span> <span class="st">"comparing 3 kits across twins"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb15-189"><a href="#cb15-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_add_data</span>(genetics_long)</span>
+<span id="cb15-190"><a href="#cb15-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-191"><a href="#cb15-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-192"><a href="#cb15-192" aria-hidden="true" tabindex="-1"></a>This graph tells a story about how each kit is compared to one another in their genetic share. I faceted by twin so it's easier to see exactly how each kit is different for each twin side by side. The tooltip also helps give extra information like more detailed genetic share for each part of the bar graph. For some kits, the genetic share is seen to be over the value 1 (twin 3A, 23andMe) which I don't think should happen because the total genetic share should be 1. From this graph, we can tell the accuracy and compare differences across kits. </span>
+<span id="cb15-193"><a href="#cb15-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-194"><a href="#cb15-194" aria-hidden="true" tabindex="-1"></a><span class="fu">## d</span></span>
+<span id="cb15-195"><a href="#cb15-195" aria-hidden="true" tabindex="-1"></a>story under each graph.</span>
+<span id="cb15-196"><a href="#cb15-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-197"><a href="#cb15-197" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 2</span></span>
+<span id="cb15-198"><a href="#cb15-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-199"><a href="#cb15-199" aria-hidden="true" tabindex="-1"></a><span class="fu">#### email marketing challenge</span></span>
+<span id="cb15-202"><a href="#cb15-202" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-203"><a href="#cb15-203" aria-hidden="true" tabindex="-1"></a>challenge_data <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">"https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-13.json"</span>)</span>
+<span id="cb15-204"><a href="#cb15-204" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-205"><a href="#cb15-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-206"><a href="#cb15-206" aria-hidden="true" tabindex="-1"></a>This data shows the completion rates for an email marketing campaign and also the response rate. The problem is that the response rate is low and the completion rate is high, but the completion rate comes from the total people who responded, so it shouldn't be more than the response rate. There should be a new variable that calculates the completion rate with respect to the response rate. So how many people actually completed the survey, under the amount of people that actually responded. </span>
+<span id="cb15-207"><a href="#cb15-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-210"><a href="#cb15-210" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-211"><a href="#cb15-211" aria-hidden="true" tabindex="-1"></a>challenge_data <span class="ot">&lt;-</span> challenge_data <span class="sc">|&gt;</span></span>
+<span id="cb15-212"><a href="#cb15-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(Date, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"quarter"</span>, <span class="st">"year"</span>), <span class="at">sep =</span> <span class="st">"-"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-213"><a href="#cb15-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-214"><a href="#cb15-214" aria-hidden="true" tabindex="-1"></a>    <span class="at">quarter =</span> <span class="fu">parse_number</span>(quarter),</span>
+<span id="cb15-215"><a href="#cb15-215" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">parse_number</span>(year),</span>
+<span id="cb15-216"><a href="#cb15-216" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_str =</span> <span class="fu">paste0</span>(year, <span class="st">"-"</span>, <span class="dv">3</span> <span class="sc">*</span> quarter <span class="sc">-</span> <span class="dv">2</span>, <span class="st">"-01"</span> ),</span>
+<span id="cb15-217"><a href="#cb15-217" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">ymd</span>(date_str))</span>
+<span id="cb15-218"><a href="#cb15-218" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-219"><a href="#cb15-219" aria-hidden="true" tabindex="-1"></a>challenge_data <span class="ot">&lt;-</span> challenge_data <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">TrueCompletionRate =</span> <span class="st">`</span><span class="at">Completion Rate</span><span class="st">`</span> <span class="sc">*</span> <span class="st">`</span><span class="at">Response Rate</span><span class="st">`</span>)</span>
+<span id="cb15-220"><a href="#cb15-220" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-221"><a href="#cb15-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-224"><a href="#cb15-224" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-225"><a href="#cb15-225" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb15-226"><a href="#cb15-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-227"><a href="#cb15-227" aria-hidden="true" tabindex="-1"></a>responseplot <span class="ot">&lt;-</span> <span class="fu">vl_chart</span>(challenge_data) <span class="sc">|&gt;</span></span>
+<span id="cb15-228"><a href="#cb15-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_mark_bar</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-229"><a href="#cb15-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_x</span>(<span class="st">"date:T"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-230"><a href="#cb15-230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_y</span>(<span class="st">"Response Rate:Q"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-231"><a href="#cb15-231" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_color</span>(<span class="at">value =</span> <span class="st">"blue"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb15-232"><a href="#cb15-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_tooltip_array</span>(<span class="fu">list</span>(<span class="st">"Response Rate"</span>))</span>
+<span id="cb15-233"><a href="#cb15-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-234"><a href="#cb15-234" aria-hidden="true" tabindex="-1"></a>completionplot <span class="ot">&lt;-</span> <span class="fu">vl_chart</span>(challenge_data) <span class="sc">|&gt;</span></span>
+<span id="cb15-235"><a href="#cb15-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_mark_line</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-236"><a href="#cb15-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_x</span>(<span class="st">"date:T"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-237"><a href="#cb15-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_y</span>(<span class="st">"TrueCompletionRate:Q"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-238"><a href="#cb15-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_color</span>(<span class="at">value =</span> <span class="st">"red"</span>)</span>
+<span id="cb15-239"><a href="#cb15-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-240"><a href="#cb15-240" aria-hidden="true" tabindex="-1"></a>completionpoint <span class="ot">&lt;-</span> <span class="fu">vl_chart</span>(challenge_data) <span class="sc">|&gt;</span></span>
+<span id="cb15-241"><a href="#cb15-241" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_mark_point</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-242"><a href="#cb15-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_x</span>(<span class="st">"date:T"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-243"><a href="#cb15-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_y</span>(<span class="st">"TrueCompletionRate:Q"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-244"><a href="#cb15-244" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_color</span>(<span class="at">value =</span> <span class="st">"red"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb15-245"><a href="#cb15-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_tooltip_array</span>(<span class="fu">list</span>(<span class="st">"TrueCompletionRate"</span>, <span class="st">"Completion Rate"</span>, <span class="st">"Response Rate"</span>))</span>
+<span id="cb15-246"><a href="#cb15-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-247"><a href="#cb15-247" aria-hidden="true" tabindex="-1"></a><span class="fu">vl_layer</span>(responseplot, completionplot, completionpoint) <span class="sc">|&gt;</span></span>
+<span id="cb15-248"><a href="#cb15-248" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_add_properties</span>(<span class="at">title =</span> <span class="st">"Completion Rates in Proportion to Response Rate"</span>)</span>
+<span id="cb15-249"><a href="#cb15-249" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-250"><a href="#cb15-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-251"><a href="#cb15-251" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 3</span></span>
+<span id="cb15-252"><a href="#cb15-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-253"><a href="#cb15-253" aria-hidden="true" tabindex="-1"></a><span class="fu">## a</span></span>
+<span id="cb15-254"><a href="#cb15-254" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-255"><a href="#cb15-255" aria-hidden="true" tabindex="-1"></a><span class="in">##Idk why this isn't working, but i can access the file through pulling it through my laptop.</span></span>
+<span id="cb15-256"><a href="#cb15-256" aria-hidden="true" tabindex="-1"></a><span class="in">Tanzania_Data &lt;- read_csv("https://github.com/Felicia-susanto/data304/raw/refs/heads/main/data/Tazania%20Data.xlsx")</span></span>
+<span id="cb15-257"><a href="#cb15-257" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-258"><a href="#cb15-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-261"><a href="#cb15-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{R}</span></span>
+<span id="cb15-262"><a href="#cb15-262" aria-hidden="true" tabindex="-1"></a><span class="co">#just so the code can run from other devices</span></span>
+<span id="cb15-263"><a href="#cb15-263" aria-hidden="true" tabindex="-1"></a>tanzania <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-264"><a href="#cb15-264" aria-hidden="true" tabindex="-1"></a>  <span class="at">Survey_Year =</span> <span class="fu">c</span>(<span class="dv">1991</span>, <span class="dv">1992</span>, <span class="dv">1996</span>, <span class="dv">1999</span>, <span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2016</span>),</span>
+<span id="cb15-265"><a href="#cb15-265" aria-hidden="true" tabindex="-1"></a>  <span class="at">Fertility_Rate =</span> <span class="fu">c</span>(<span class="fl">6.2</span>, <span class="fl">6.2</span>, <span class="fl">5.8</span>, <span class="fl">5.6</span>, <span class="fl">5.7</span>, <span class="fl">5.7</span>, <span class="fl">5.4</span>, <span class="fl">5.2</span>, <span class="fl">5.2</span>),</span>
+<span id="cb15-266"><a href="#cb15-266" aria-hidden="true" tabindex="-1"></a>  <span class="at">Contraception_Use =</span> <span class="fu">c</span>(<span class="fl">0.059</span>, <span class="fl">0.059</span>, <span class="fl">0.117</span>, <span class="fl">0.156</span>, <span class="fl">0.176</span>, <span class="fl">0.176</span>, <span class="fl">0.236</span>, <span class="fl">0.384</span>, <span class="fl">0.384</span>),</span>
+<span id="cb15-267"><a href="#cb15-267" aria-hidden="true" tabindex="-1"></a>  <span class="at">Unmet_FP =</span> <span class="fu">c</span>(<span class="fl">0.278</span>, <span class="fl">0.278</span>, <span class="fl">0.26</span>, <span class="fl">0.223</span>, <span class="fl">0.243</span>, <span class="fl">0.243</span>, <span class="fl">0.223</span>, <span class="fl">0.221</span>, <span class="fl">0.221</span>)</span>
+<span id="cb15-268"><a href="#cb15-268" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-269"><a href="#cb15-269" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-270"><a href="#cb15-270" aria-hidden="true" tabindex="-1"></a>For surveys that were conducted in 2 years, I duplicated their values and put both years in with the same value. I also changed all the percentages to be proportions for now.</span>
+<span id="cb15-271"><a href="#cb15-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-272"><a href="#cb15-272" aria-hidden="true" tabindex="-1"></a><span class="fu">## b</span></span>
+<span id="cb15-273"><a href="#cb15-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-274"><a href="#cb15-274" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-275"><a href="#cb15-275" aria-hidden="true" tabindex="-1"></a><span class="in">FR &lt;- vl_chart(Tazania_Data) |&gt;</span></span>
+<span id="cb15-276"><a href="#cb15-276" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_mark_line() |&gt;</span></span>
+<span id="cb15-277"><a href="#cb15-277" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_x("Survey_Year:O") |&gt;</span></span>
+<span id="cb15-278"><a href="#cb15-278" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_y("Fertility_Rate:Q") |&gt;</span></span>
+<span id="cb15-279"><a href="#cb15-279" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_color(value = "blue")|&gt;</span></span>
+<span id="cb15-280"><a href="#cb15-280" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))</span></span>
+<span id="cb15-281"><a href="#cb15-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-282"><a href="#cb15-282" aria-hidden="true" tabindex="-1"></a><span class="in">Contraception &lt;- vl_chart(Tazania_Data) |&gt;</span></span>
+<span id="cb15-283"><a href="#cb15-283" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_mark_line() |&gt;</span></span>
+<span id="cb15-284"><a href="#cb15-284" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_x("Survey_Year:O") |&gt;</span></span>
+<span id="cb15-285"><a href="#cb15-285" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_y("Contraception_Use:Q") |&gt;</span></span>
+<span id="cb15-286"><a href="#cb15-286" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_color(value = "red")|&gt;</span></span>
+<span id="cb15-287"><a href="#cb15-287" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))</span></span>
+<span id="cb15-288"><a href="#cb15-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-289"><a href="#cb15-289" aria-hidden="true" tabindex="-1"></a><span class="in">FP &lt;- vl_chart(Tazania_Data) |&gt;</span></span>
+<span id="cb15-290"><a href="#cb15-290" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_mark_line() |&gt;</span></span>
+<span id="cb15-291"><a href="#cb15-291" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_x("Survey_Year:O") |&gt;</span></span>
+<span id="cb15-292"><a href="#cb15-292" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_y("Unmet_FP:Q") |&gt;</span></span>
+<span id="cb15-293"><a href="#cb15-293" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_color(value = "orange")|&gt;</span></span>
+<span id="cb15-294"><a href="#cb15-294" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))</span></span>
+<span id="cb15-295"><a href="#cb15-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-296"><a href="#cb15-296" aria-hidden="true" tabindex="-1"></a><span class="in">FR2 &lt;- vl_chart(Tazania_Data) |&gt;</span></span>
+<span id="cb15-297"><a href="#cb15-297" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_mark_point() |&gt;</span></span>
+<span id="cb15-298"><a href="#cb15-298" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_x("Survey_Year:O") |&gt;</span></span>
+<span id="cb15-299"><a href="#cb15-299" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_y("Fertility_Rate:Q") |&gt;</span></span>
+<span id="cb15-300"><a href="#cb15-300" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_color(value = "blue")|&gt;</span></span>
+<span id="cb15-301"><a href="#cb15-301" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))</span></span>
+<span id="cb15-302"><a href="#cb15-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-303"><a href="#cb15-303" aria-hidden="true" tabindex="-1"></a><span class="in">Contraception2 &lt;- vl_chart(Tazania_Data) |&gt;</span></span>
+<span id="cb15-304"><a href="#cb15-304" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_mark_point() |&gt;</span></span>
+<span id="cb15-305"><a href="#cb15-305" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_x("Survey_Year:O") |&gt;</span></span>
+<span id="cb15-306"><a href="#cb15-306" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_y("Contraception_Use:Q") |&gt;</span></span>
+<span id="cb15-307"><a href="#cb15-307" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_color(value = "red")|&gt;</span></span>
+<span id="cb15-308"><a href="#cb15-308" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))</span></span>
+<span id="cb15-309"><a href="#cb15-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-310"><a href="#cb15-310" aria-hidden="true" tabindex="-1"></a><span class="in">FP2 &lt;- vl_chart(Tazania_Data) |&gt;</span></span>
+<span id="cb15-311"><a href="#cb15-311" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_mark_point() |&gt;</span></span>
+<span id="cb15-312"><a href="#cb15-312" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_x("Survey_Year:O") |&gt;</span></span>
+<span id="cb15-313"><a href="#cb15-313" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_y("Unmet_FP:Q") |&gt;</span></span>
+<span id="cb15-314"><a href="#cb15-314" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_color(value = "orange")|&gt;</span></span>
+<span id="cb15-315"><a href="#cb15-315" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_encode_tooltip_array(list("Fertility_Rate", "Unmet_FP", "Contraception_Use"))</span></span>
+<span id="cb15-316"><a href="#cb15-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-317"><a href="#cb15-317" aria-hidden="true" tabindex="-1"></a><span class="in">vl_layer(FR, Contraception, FP, FR2, Contraception2, FP2) |&gt;</span></span>
+<span id="cb15-318"><a href="#cb15-318" aria-hidden="true" tabindex="-1"></a><span class="in">  vl_add_properties(title = "Fertility Rate, Contraception, and Family Planning in Tanzania")</span></span>
+<span id="cb15-319"><a href="#cb15-319" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-320"><a href="#cb15-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-323"><a href="#cb15-323" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-324"><a href="#cb15-324" aria-hidden="true" tabindex="-1"></a><span class="co">#This gives a legend for color</span></span>
+<span id="cb15-325"><a href="#cb15-325" aria-hidden="true" tabindex="-1"></a>Tanzania_Data_long <span class="ot">&lt;-</span> tanzania<span class="sc">|&gt;</span></span>
+<span id="cb15-326"><a href="#cb15-326" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Fertility_Rate, Contraception_Use, Unmet_FP), </span>
+<span id="cb15-327"><a href="#cb15-327" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Category"</span>, </span>
+<span id="cb15-328"><a href="#cb15-328" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Value"</span>)</span>
+<span id="cb15-329"><a href="#cb15-329" aria-hidden="true" tabindex="-1"></a><span class="fu">vl_chart</span>(Tanzania_Data_long) <span class="sc">|&gt;</span></span>
+<span id="cb15-330"><a href="#cb15-330" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_mark_line</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-331"><a href="#cb15-331" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_x</span>(<span class="st">"Survey_Year:O"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-332"><a href="#cb15-332" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_y</span>(<span class="st">"Value:Q"</span>, <span class="at">title =</span> <span class="st">"Rate"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-333"><a href="#cb15-333" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_color</span>(<span class="at">field =</span> <span class="st">"Category:N"</span>, </span>
+<span id="cb15-334"><a href="#cb15-334" aria-hidden="true" tabindex="-1"></a>                  <span class="at">title =</span> <span class="st">"Indicator"</span>, </span>
+<span id="cb15-335"><a href="#cb15-335" aria-hidden="true" tabindex="-1"></a>                  <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">domain =</span> <span class="fu">c</span>(<span class="st">"Fertility_Rate"</span>, <span class="st">"Unmet_FP"</span>, <span class="st">"Contraception_Use"</span>), </span>
+<span id="cb15-336"><a href="#cb15-336" aria-hidden="true" tabindex="-1"></a>                               <span class="at">range =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"orange"</span>, <span class="st">"red"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb15-337"><a href="#cb15-337" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_encode_tooltip_array</span>(<span class="fu">list</span>(<span class="st">"Survey_Year"</span>, <span class="st">"Category"</span>, <span class="st">"Value"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-338"><a href="#cb15-338" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vl_add_properties</span>(<span class="at">title =</span> <span class="st">"Women's Fertility Rate, Contraception, and Family Planning in Tanzania"</span>)</span>
+<span id="cb15-339"><a href="#cb15-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-340"><a href="#cb15-340" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-341"><a href="#cb15-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-342"><a href="#cb15-342" aria-hidden="true" tabindex="-1"></a><span class="fu">## c</span></span>
+<span id="cb15-343"><a href="#cb15-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-344"><a href="#cb15-344" aria-hidden="true" tabindex="-1"></a>This graph tells a story about women's fertility rates, contraception use, and unmet family planning needs in Tanzania over time.</span>
+<span id="cb15-345"><a href="#cb15-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-346"><a href="#cb15-346" aria-hidden="true" tabindex="-1"></a>Fertility Rate (Blue Line):</span>
+<span id="cb15-347"><a href="#cb15-347" aria-hidden="true" tabindex="-1"></a>The fertility rate has declined steadily from around 6 children per woman in the early 1990s to around 5 in the 2010s.</span>
+<span id="cb15-348"><a href="#cb15-348" aria-hidden="true" tabindex="-1"></a>This suggests improvements in reproductive health education, economic factors, and possibly access to family planning services.</span>
+<span id="cb15-349"><a href="#cb15-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-350"><a href="#cb15-350" aria-hidden="true" tabindex="-1"></a>Contraception Use (Red Line):</span>
+<span id="cb15-351"><a href="#cb15-351" aria-hidden="true" tabindex="-1"></a>The use of contraception has gradually increased over time, though it looks like it remains relatively low compared to fertility rates, we must remember that it is a proportion, so it only goes up to 1.</span>
+<span id="cb15-352"><a href="#cb15-352" aria-hidden="true" tabindex="-1"></a>This could indicate increased awareness and availability of contraceptive methods.</span>
+<span id="cb15-353"><a href="#cb15-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-354"><a href="#cb15-354" aria-hidden="true" tabindex="-1"></a>Unmet Family Planning Needs (Orange Line):</span>
+<span id="cb15-355"><a href="#cb15-355" aria-hidden="true" tabindex="-1"></a>The unmet need for family planning appears relatively low and stable over the years.</span>
+<span id="cb15-356"><a href="#cb15-356" aria-hidden="true" tabindex="-1"></a>If this line is declining, it suggests that more women are gaining access to the contraception they need. However, if it remains constant or rises, it indicates persistent barriers.</span>
+<span id="cb15-357"><a href="#cb15-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-358"><a href="#cb15-358" aria-hidden="true" tabindex="-1"></a>The declining fertility rate is possibly influenced by increasing contraception use and improved family planning services.</span>
+<span id="cb15-359"><a href="#cb15-359" aria-hidden="true" tabindex="-1"></a>However, unmet family planning is still relatively stable, meaning there might still be cultural, economic, or logistical barriers limiting access to some families.</span>
+<span id="cb15-360"><a href="#cb15-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-361"><a href="#cb15-361" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 4</span></span>
+<span id="cb15-362"><a href="#cb15-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-363"><a href="#cb15-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-364"><a href="#cb15-364" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 5</span></span>
+<span id="cb15-365"><a href="#cb15-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-366"><a href="#cb15-366" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>an encoding channel other than x or y: used color for most graphs (comparing twins, kits, challenge, tanzania )</span>
+<span id="cb15-367"><a href="#cb15-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-368"><a href="#cb15-368" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>layers: Used in exercise 2 to graph completion rates and response rates</span>
+<span id="cb15-369"><a href="#cb15-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-370"><a href="#cb15-370" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>facets: used in comparing kits and comparing twins</span>
+<span id="cb15-371"><a href="#cb15-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-372"><a href="#cb15-372" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>concatenation or repeat:</span>
+<span id="cb15-373"><a href="#cb15-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-374"><a href="#cb15-374" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>non-default settings for a channel’s scale or guide: used tableau10 for color in comparing twins, sorted the twin field as well under vl_encode_x, mutate date for challenge.</span>
+<span id="cb15-375"><a href="#cb15-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-376"><a href="#cb15-376" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>tooltips: used in most of my graphics: exercise 2, exercise 3</span>
+<span id="cb15-377"><a href="#cb15-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-378"><a href="#cb15-378" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>another kind of interaction (panning/zooming, brushing, sliders, etc.): </span>
+<span id="cb15-379"><a href="#cb15-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-380"><a href="#cb15-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-381"><a href="#cb15-381" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise 6</span></span>
+<span id="cb15-382"><a href="#cb15-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-383"><a href="#cb15-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-384"><a href="#cb15-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-385"><a href="#cb15-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-386"><a href="#cb15-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-387"><a href="#cb15-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-388"><a href="#cb15-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-389"><a href="#cb15-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-390"><a href="#cb15-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-391"><a href="#cb15-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-392"><a href="#cb15-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-393"><a href="#cb15-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-394"><a href="#cb15-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-395"><a href="#cb15-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-396"><a href="#cb15-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-397"><a href="#cb15-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-398"><a href="#cb15-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-399"><a href="#cb15-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-400"><a href="#cb15-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-401"><a href="#cb15-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-402"><a href="#cb15-402" aria-hidden="true" tabindex="-1"></a></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

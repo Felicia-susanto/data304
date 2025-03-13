@@ -14,4 +14,5 @@ editor:
 * [HW7: Bar Plots](barcharts.html)
 * [HW8: Data Wrangling for Graphics](data wrangling.html)
 * [hw9: Maps, Pies, and Other Graphics](maps&pies.html)
+* [final project](finalproject.html)
 
